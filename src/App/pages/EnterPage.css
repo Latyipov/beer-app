@@ -1,0 +1,64 @@
+
+.bodyApp__h1{
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: aliceblue;
+}
+.EnterForm{
+  max-width:400px;
+  padding:50px 70px;
+  border-radius:0 0 10px 10px;
+  box-shadow:4px 4px 15px rgba(0, 0, 0, 0.2);
+  background-color:#fff;
+}
+
+.EnterForm__item {
+  font-weight:bold;
+  border-radius:10px;
+  margin-bottom:25px;
+  padding:10px 20px;
+}
+
+.tabButtons{
+  display: flex;
+  border-radius:10px 10px 0 0;
+  justify-content: center;
+  max-width: 540px;
+  min-width: 363px;
+  width: 100%;
+ 
+}
+
+.tabs {
+  padding: 15px;
+  text-align: center;
+  width: 100%;
+  background-color:rgb(243, 243, 243);
+  cursor: pointer;
+  border-bottom: 1px solid #3f93ff;
+  box-sizing: content-box;
+  position: relative;
+  outline: none;
+ 
+}
+
+.tabs:first-child{
+  border-radius: 10px 0 0 0;
+}
+.tabs:last-child{
+  border-radius: 0 10px 0 0;
+}
+.tabs:not(:last-child){
+  border-right: 1px solid #3f93ff;
+}
+.active-tabs  {
+  background: white;
+  border-bottom: 1px solid transparent;
+}
+
+button {
+  border: none;
+}
+.content-tabs {
+  flex-grow : 1;
+}
