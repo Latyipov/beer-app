@@ -4,19 +4,22 @@ require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+const isDev = process.env.NODE_ENV === 'development';
+
 module.exports = {
   target: 'web',
-  mode: 'development',
+  mode: isDev?'development':'production',
   entry: {
     app: path.resolve(__dirname, 'src/index.js')
   },
   output: {
-    path: path.resolve(__dirname,'dist'),
+    publicPath: isDev?'/':('/' + process.env.URL_PATH || ''),
+    path: isDev?path.resolve(__dirname, 'dist'):path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',
     chunkFilename: '[name]-[id].js',
     clean: true
   },
-  devtool:'source-map',
+  devtool: isDev ?'eval-cheap-module-source-map':'source-map',
   module: {
     rules: [
       {

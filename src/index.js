@@ -6,9 +6,7 @@ import { Provider } from 'react-redux'
 import {store} from './App/store'
 import './firebase'
 
-
 ReactDOM.render(
-
   <BrowserRouter>
     <Provider store={store}>
       <App />
