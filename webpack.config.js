@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
-
+console.log('/' + process.env.URL_PATH || '');
 module.exports = {
   target: 'web',
   mode: isDev?'development':'production',
@@ -55,6 +55,7 @@ module.exports = {
       'REACT_APP_FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID),
       'REACT_APP_FIREBASE_APP_ID': JSON.stringify(process.env.REACT_APP_FIREBASE_APP_ID),
       'REACT_APP_FIREBASE_MEASUREMENT_ID': JSON.stringify(process.env.REACT_APP_FIREBASE_MEASUREMENT_ID),
+      'URL_PATH': JSON.stringify(process.env.URL_PATH || ''),
     })
   ],
 
