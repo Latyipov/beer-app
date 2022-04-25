@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import './FactsComponentAdder.css'
 import { CounterAdder } from '../CounterAdder/CounterAdder'
 import { FactsLoader } from '../FactsLoader/FactsLoader'
 import { PusherToFirebase } from '../FirebaseComponents/PusherToFirebase/PusherToFirebase'
 
-export function FactsComponentAdder({ userId }) {
-  const [factValue, setFactValue] = useState(1);
-  const [facts, setFacts] = useState('');
+export function FactsComponentAdder ({ userId }) {
+  const [factValue, setFactValue] = useState(1)
+  const [facts, setFacts] = useState('')
 
   const onCounterButtonClick = (counterDirection) => {
-    const counterResult = CounterAdder(counterDirection, factValue, 1);
-    setFactValue(counterResult);
+    const counterResult = CounterAdder(counterDirection, factValue, 1)
+    setFactValue(counterResult)
   }
 
   const onShowFactButtonClick = async () => {
-    const DownloadedFacts = await FactsLoader(factValue);
+    const DownloadedFacts = await FactsLoader(factValue)
     const FactsLayout = DownloadedFacts.map(factObj => {
       return (
         <div className='factsBox' key={factObj._id}>
@@ -25,14 +25,15 @@ export function FactsComponentAdder({ userId }) {
           > add to favorite</button>
         </div>)
     })
-    setFacts(FactsLayout);
+    setFacts(FactsLayout)
   }
 
-  // 
-  return (!facts) ? (
+  //
+  return (!facts)
+    ? (
     <div className='factNavigation'>
       <button
-        onClick={() => onCounterButtonClick("-")}
+        onClick={() => onCounterButtonClick('-')}
         className='factNavigation_nav-btn'>
         -</button>
       <button
@@ -42,11 +43,11 @@ export function FactsComponentAdder({ userId }) {
         Show me {factValue} cat-fact
       </button>
       <button
-        onClick={() => onCounterButtonClick("+")}
+        onClick={() => onCounterButtonClick('+')}
         className='factNavigation_nav-btn'>
         +</button>
-    </div>) :
-    (<div>
+    </div>)
+    : (<div>
       <button
         className='btn'
         onClick={() => setFacts('')}
