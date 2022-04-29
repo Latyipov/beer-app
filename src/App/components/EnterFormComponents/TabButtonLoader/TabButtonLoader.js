@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-export function TabButtonLoader ({ tabButton, activeTab, changeActiveTab }) {
+export function TabButtonLoader({ tabButton, activeTab, changeActiveTab }) {
   const onToggleTab = (tabValue) => {
-    changeActiveTab(tabValue)
-  }
+    changeActiveTab(tabValue);
+  };
   return (
     <button
       className={activeTab === tabButton ? 'tabs active-tabs' : 'tabs'}
@@ -11,5 +11,5 @@ export function TabButtonLoader ({ tabButton, activeTab, changeActiveTab }) {
     >
       {tabButton}
     </button>
-  )
+  );
 }
