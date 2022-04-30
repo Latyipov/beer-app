@@ -11,6 +11,7 @@ In order to show Favorite facts, app uses api that downloads facts for ID.
 Favorite facts have connection with realtime Database. It allows to add and delete favorite facts without refreshing page.
 
 ## Tech stack
+
 HTML
 CSS
 JavaScript
@@ -19,6 +20,7 @@ Redux
 
 firebase
 API (https://alexwohlbruck.github.io/cat-facts/)
+
 
 ## To start project in development mode:
 
