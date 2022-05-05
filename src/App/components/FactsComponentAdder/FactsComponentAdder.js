@@ -15,45 +15,41 @@ export function FactsComponentAdder ({ userId }) {
 
   const onShowFactButtonClick = async () => {
     const DownloadedFacts = await FactsLoader(factValue)
-    const FactsLayout = DownloadedFacts.map(factObj => {
+    const FactsLayout = DownloadedFacts.map((factObj) => {
       return (
         <div className='factsBox' key={factObj._id}>
           {factObj.text}
           <button
             className='btn'
             onClick={() => PusherToFirebase(userId, 'favoriteFacts', factObj._id)}
-          > add to favorite</button>
-        </div>)
+          >
+            {' '}
+            add to favorite
+          </button>
+        </div>
+      )
     })
     setFacts(FactsLayout)
   }
-
   return (!facts)
-    ? (
-    <div className='factNavigation'>
-      <button
-        onClick={() => onCounterButtonClick('-')}
-        className='factNavigation_nav-btn'>
-        -</button>
-      <button
-        className='btn'
-        onClick={() => onShowFactButtonClick()}
-      >
+    ? (<div className='factNavigation'>
+      <button onClick={() => onCounterButtonClick('-')} className='factNavigation_nav-btn'>
+        -
+      </button>
+      <button className='btn' onClick={() => onShowFactButtonClick()}>
         Show me {factValue} cat-fact
       </button>
-      <button
-        onClick={() => onCounterButtonClick('+')}
-        className='factNavigation_nav-btn'>
-        +</button>
-    </div>)
-    : (<div>
-      <button
-        className='btn'
-        onClick={() => setFacts('')}
-      >
-        hide cat-fact
+      <button onClick={() => onCounterButtonClick('+')} className='factNavigation_nav-btn'>
+        +
       </button>
-      <h2>Some Cat-fact:</h2>
-      {facts}
     </div>)
+    : (
+      <div>
+        <button className='btn' onClick={() => setFacts('')}>
+          hide cat-fact
+        </button>
+        <h2>Some Cat-fact:</h2>
+        {facts}
+      </div>
+      )
 }
