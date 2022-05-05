@@ -1,39 +1,38 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from '../../../store/slices/userSlice';
-import { useDispatch } from 'react-redux';
-import {DataCreatorForNewUser} from '../../DataCreatorForNewUser/DataCreatorForNewUser'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { setUser } from '../../../store/slices/userSlice'
+import { useDispatch } from 'react-redux'
+import { DataCreatorForNewUser } from '../../DataCreatorForNewUser/DataCreatorForNewUser'
 
+export function RegistrationFormAdder () {
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
 
-export function RegistrationFormAdder() {
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();;
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onFormSubmitClick = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    const auth = getAuth();
+    const auth = getAuth()
     createUserWithEmailAndPassword(auth, email, pass)
       .then(({ user }) => {
         dispatch(setUser({
           email: user.email,
           id: user.uid,
           token: user.accessToken
-        }));
+        }))
 
-        DataCreatorForNewUser(user.uid, user.email);
-        navigate('/');
+        DataCreatorForNewUser(user.uid, user.email)
+        navigate('/')
       })
-      .catch(console.error);
+      .catch(console.error)
   }
 
   return (
     <div className='EnterForm'>
-      <h2>Authorisation</h2>
+      <h2>Authorization</h2>
       <form>
           <input className='EnterForm__item'
             type="email"
