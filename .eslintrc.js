@@ -26,7 +26,8 @@ module.exports = {
   rules: {
     "react/prop-types": 0,
     "react/jsx-uses-vars": "error",
-    "react/jsx-uses-react": "error"
+    "react/jsx-uses-react": "error",
+    "no-console": "error"
   },
 
   "globals": {
