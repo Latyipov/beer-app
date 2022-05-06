@@ -18,17 +18,15 @@ JavaScript
 React
 Redux
 
+- HTML
+- CSS
+- JavaScript
+- React
+- Redux
+- Eslint
 
-* HTML
-* CSS
-* JavaScript
-* React
-* Redux
-* Eslint
-
-* firebase
-* API (https://alexwohlbruck.github.io/cat-facts/)
-
+- firebase
+- API (https://alexwohlbruck.github.io/cat-facts/)
 
 ## To start project in development mode:
 
