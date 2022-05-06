@@ -18,10 +18,10 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    "react/prop-types": 0,
-    "react/jsx-uses-vars": "error",
-    "react/jsx-uses-react": "error",
-    "no-console": "error"
+    'react/prop-types': 0,
+    'react/jsx-uses-vars': 'error',
+    'react/jsx-uses-react': 'error',
+    'no-console': 'error',
   },
 
   globals: {
