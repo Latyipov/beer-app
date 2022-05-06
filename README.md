@@ -17,11 +17,12 @@ Favorite facts have connection with realtime Database. It allows to add and dele
 - JavaScript
 - React
 - Redux
+- Webpack
 - Eslint
 - Prettier
 
-firebase
-API (https://alexwohlbruck.github.io/cat-facts/)
+- firebase
+- API (https://alexwohlbruck.github.io/cat-facts/)
 
 ## To start project in development mode:
 

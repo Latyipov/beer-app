@@ -32,7 +32,6 @@ export function FactsComponentAdder({ userId }) {
     setFacts(FactsLayout);
   };
 
-  //
   return !facts ? (
     <div className='factNavigation'>
       <button onClick={() => onCounterButtonClick('-')} className='factNavigation_nav-btn'>
