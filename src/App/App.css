@@ -1,9 +1,9 @@
 body {
-  background-color: #214c84;
-  height: 100%;
+  background-color:#214c84;
+  height:100%;
   color: white;
 }
-.bodyApp {
+.bodyApp{
   padding: 5rem;
   text-align: center;
   display: flex;
@@ -21,17 +21,17 @@ a {
 a:hover {
   color: rgb(108, 223, 204);
 }
-.btn {
-  border-radius: 30px;
-  padding: 10px 20px;
-  font-size: 20px;
-  font-weight: bold;
-  background-color: #3f93ff;
+.btn{
+  border-radius:30px;
+  padding:10px 20px;
+  font-size:20px;
+  font-weight:bold;
+  background-color:#3f93ff;
   border: 1px solid black;
-  color: white;
+  color:white;
   margin: 1rem;
 }
-.btn:active {
-  background-color: #3f92ff86;
+.btn:active{
+  background-color:#3f92ff86;
   transform: translate(0, 0.05em);
 }
