@@ -35,3 +35,8 @@ a:hover {
   background-color: #3f92ff86;
   transform: translate(0, 0.05em);
 }
+.error {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
