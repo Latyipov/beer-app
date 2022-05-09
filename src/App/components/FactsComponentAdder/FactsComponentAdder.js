@@ -14,22 +14,28 @@ export function FactsComponentAdder({ userId }) {
   };
 
   const onShowFactButtonClick = async () => {
-    const DownloadedFacts = await FactsLoader(factValue);
-    const FactsLayout = DownloadedFacts.map((factObj) => {
-      return (
-        <div className='factsBox' key={factObj._id}>
-          {factObj.text}
-          <button
-            className='btn'
-            onClick={() => PusherToFirebase(userId, 'favoriteFacts', factObj._id)}
-          >
-            {' '}
-            add to favorite
-          </button>
-        </div>
+    try {
+      const DownloadedFacts = await FactsLoader(factValue);
+      const FactsLayout = DownloadedFacts.map((factObj) => {
+        return (
+          <div className='factsBox' key={factObj._id}>
+            {factObj.text}
+            <button
+              className='btn'
+              onClick={() => PusherToFirebase(userId, 'favoriteFacts', factObj._id)}
+            >
+              add to favorite
+            </button>
+          </div>
+        );
+      });
+      setFacts(FactsLayout);
+    } catch {
+      const ErrorLayout = (
+        <div className='error'>Sorry, API with cat-facts not available now. Try again.</div>
       );
-    });
-    setFacts(FactsLayout);
+      setFacts(ErrorLayout);
+    }
   };
 
   return !facts ? (

@@ -5,7 +5,5 @@ export async function RemoverFromFirebase(userId, dataSection, factIdForRemove) 
   const dbRef = ref(db, 'users/' + userId + '/' + dataSection + '/' + factIdForRemove);
   try {
     await remove(dbRef);
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
