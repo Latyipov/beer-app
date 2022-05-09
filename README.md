@@ -20,6 +20,7 @@ Favorite facts have connection with realtime Database. It allows to add and dele
 - Webpack
 - Eslint
 - Prettier
+- Husky
 
 - firebase
 - API (https://alexwohlbruck.github.io/cat-facts/)

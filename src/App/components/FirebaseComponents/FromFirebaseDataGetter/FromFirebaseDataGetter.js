@@ -8,7 +8,5 @@ export async function FromFirebaseDataGetter(userId, dataSection) {
     const snapshot = await get(dbRef);
     gettedData = snapshot.val();
     return gettedData;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 }
