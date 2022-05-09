@@ -1,22 +1,22 @@
-.factNavigation{
-  display:flex;
+.factNavigation {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.factNavigation_nav-btn{
-  border-radius:30px;
-  padding:10px 20px;
-  font-size:25px;
-  font-weight:bold;
-  background-color:#ffffff;
+.factNavigation_nav-btn {
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #ffffff;
   border: 1px solid black;
-  color:rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
-.factNavigation_nav-btn:active{
-  background-color:rgba(255, 255, 255, 0.774);
+.factNavigation_nav-btn:active {
+  background-color: rgba(255, 255, 255, 0.774);
   transform: translate(0, 0.05em);
 }
-.factsBox{
+.factsBox {
   display: flex;
   padding: 1rem;
   align-content: center;
