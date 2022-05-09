@@ -8,21 +8,16 @@ export async function FactsLoader(factQuantity, factId) {
   } else {
     newUrl = new URL(factId, baseUrl);
   }
-
-  try {
-    const result = await fetch(newUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    });
-    const resultJSON = await result.json();
-    if (!Array.isArray(resultJSON)) {
-      return [resultJSON];
-    } else {
-      return resultJSON;
-    }
-  } catch (error) {
-    console.log(error);
+  const result = await fetch(newUrl, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+  });
+  const resultJSON = await result.json();
+  if (!Array.isArray(resultJSON)) {
+    return [resultJSON];
+  } else {
+    return resultJSON;
   }
 }

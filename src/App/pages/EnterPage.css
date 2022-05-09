@@ -5,6 +5,7 @@
 }
 .EnterForm {
   max-width: 400px;
+  min-width: 172px;
   padding: 50px 70px;
   border-radius: 0 0 10px 10px;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
@@ -24,7 +25,7 @@
   border-radius: 10px 10px 0 0;
   justify-content: center;
   max-width: 540px;
-  min-width: 363px;
+  min-width: 312px;
   width: 100%;
 }
 

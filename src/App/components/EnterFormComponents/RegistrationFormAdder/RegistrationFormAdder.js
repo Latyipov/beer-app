@@ -8,6 +8,7 @@ import { DataCreatorForNewUser } from '../../DataCreatorForNewUser/DataCreatorFo
 export function RegistrationFormAdder() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [invalidError, setInvalidError] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,7 +30,17 @@ export function RegistrationFormAdder() {
         DataCreatorForNewUser(user.uid, user.email);
         navigate('/');
       })
-      .catch(console.error);
+      .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          setInvalidError('User with this email already exists.');
+        } else if (error.code === 'auth/invalid-email') {
+          setInvalidError('Invalid email.');
+        } else if (error.code === 'auth/weak-password') {
+          setInvalidError('Password should be at least 6 characters');
+        } else {
+          setInvalidError('Something wrong!');
+        }
+      });
   };
 
   return (
@@ -57,6 +68,7 @@ export function RegistrationFormAdder() {
           Registrate
         </button>
       </form>
+      <div className='error'>{invalidError}</div>
     </div>
   );
 }

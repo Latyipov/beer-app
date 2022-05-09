@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 export function AuthorizationFormAdder() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [invalidError, setInvalidError] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +28,15 @@ export function AuthorizationFormAdder() {
 
         navigate('/');
       })
-      .catch(console.error);
+      .catch((error) => {
+        if (error.code === 'auth/invalid-email') {
+          setInvalidError('Wrong email. Try again.');
+        } else if (error.code === 'auth/wrong-password') {
+          setInvalidError('Wrong password. Try again.');
+        } else {
+          setInvalidError('Something wrong!');
+        }
+      });
   };
 
   return (
@@ -55,6 +64,7 @@ export function AuthorizationFormAdder() {
           Enter
         </button>
       </form>
+      <div className='error'>{invalidError}</div>
     </div>
   );
 }
