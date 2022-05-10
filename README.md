@@ -10,7 +10,8 @@ After authentication this app is using free-api (https://alexwohlbruck.github.io
 In order to show Favorite facts, app uses api that downloads facts for ID.
 Favorite facts have connection with realtime Database. It allows to add and delete favorite facts without refreshing page.
 
-## Tech stack
+## Tech stack* firebase
+* API (https://alexwohlbruck.github.io/cat-facts/)
 
 - HTML
 - CSS
@@ -23,6 +24,7 @@ Favorite facts have connection with realtime Database. It allows to add and dele
 
 - firebase
 - API (https://alexwohlbruck.github.io/cat-facts/)
+
 
 ## To start project in development mode:
 
