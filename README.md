@@ -1,5 +1,5 @@
 # Authorization functional, API functional, save favorite
-test
+
 For correct build via Webpack you must have:
 
 - nodejs >=16.13.1
