@@ -36,5 +36,3 @@ Favorite facts have connection with realtime Database. It allows to add and dele
 ## To deploy project to GitHub Pages
 
 - `npm run deploy` - send directory `build` to GitHub Pages
-
- TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
