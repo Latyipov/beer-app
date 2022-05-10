@@ -10,34 +10,24 @@ After authentication this app is using free-api (https://alexwohlbruck.github.io
 In order to show Favorite facts, app uses api that downloads facts for ID.
 Favorite facts have connection with realtime Database. It allows to add and delete favorite facts without refreshing page.
 
-## Tech stack
-<<<<<<< HEAD
-=======
-
-HTML
-CSS
-JavaScript
-React
-Redux
->>>>>>> adding_prettier
-
-* HTML
-* CSS
-* JavaScript
-* React
-* Redux
-* Eslint
-
-
-<<<<<<< HEAD
-* firebase
+## Tech stack* firebase
 * API (https://alexwohlbruck.github.io/cat-facts/)
+
+- HTML
+- CSS
+- JavaScript
+- React
+- Redux
+- Webpack
+- Eslint
+- Prettier
+
+- firebase
+- API (https://alexwohlbruck.github.io/cat-facts/)
 
 
 ## To start project in development mode:
 
-=======
->>>>>>> adding_prettier
 - `npm install` - install necessary dependencies
 - `npm start` - start "WebpackDevServer" on your computer
 

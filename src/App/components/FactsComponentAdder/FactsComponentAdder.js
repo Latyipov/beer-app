@@ -32,13 +32,8 @@ export function FactsComponentAdder({ userId }) {
     setFacts(FactsLayout);
   };
 
-<<<<<<< HEAD
-  return (!facts)
-    ? (
-=======
-  //
   return !facts ? (
->>>>>>> adding_prettier
+
     <div className='factNavigation'>
       <button onClick={() => onCounterButtonClick('-')} className='factNavigation_nav-btn'>
         -
