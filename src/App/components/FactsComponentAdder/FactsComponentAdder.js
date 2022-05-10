@@ -33,7 +33,6 @@ export function FactsComponentAdder({ userId }) {
   };
 
   return !facts ? (
-
     <div className='factNavigation'>
       <button onClick={() => onCounterButtonClick('-')} className='factNavigation_nav-btn'>
         -
