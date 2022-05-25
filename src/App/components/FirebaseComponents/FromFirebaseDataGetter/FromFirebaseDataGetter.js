@@ -1,12 +1,14 @@
 import { getDatabase, ref, get } from 'firebase/database';
 
 export async function FromFirebaseDataGetter(userId, dataSection) {
-  const db = getDatabase();
-  const dbRef = ref(db, 'users/' + userId + '/' + dataSection);
-  let gettedData;
+  const firebaseDataBase = getDatabase();
+  const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + dataSection);
+  let firebaseData;
   try {
-    const snapshot = await get(dbRef);
-    gettedData = snapshot.val();
-    return gettedData;
-  } catch (error) {}
+    const snapshotData = await get(firebaseDataBaseReference);
+    firebaseData = snapshotData.val();
+    return firebaseData;
+  } catch (error) {
+    
+  }
 }

@@ -5,25 +5,25 @@ import { RemoverFromFirebase } from '../FirebaseComponents/RemoverFromFirebase/R
 import { getDatabase, ref, onValue } from 'firebase/database';
 
 export function FavoriteFactsComponentAdder({ userId }) {
-  const [FavotiteFacts, setFavotiteFacts] = useState('');
+  const [factsLayout, setFactsLayout] = useState('');
   const onFavoriteButtonClick = async () => {
-    const db = getDatabase();
-    const dbRef = ref(db, 'users/' + userId + '/' + 'favoriteFacts');
-    onValue(dbRef, (snapshot) => {
-      const data = snapshot.val();
-      favoriteFactsLayout(data);
+    const firebaseDataBase = getDatabase();
+    const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + 'favoriteFacts');
+    onValue(firebaseDataBaseReference, (snapshot) => {
+      const snapshotData = snapshot.val();
+      addFactsToLayout(snapshotData);
     });
-    async function favoriteFactsLayout(data) {
-      const downloadedFavoriteFacts = [];
-      for (const favoriteFactId in data) {
-        const [factObject] = await FactsLoader('', data[favoriteFactId]);
-        downloadedFavoriteFacts.push(
-          <div className='factsBox' key={favoriteFactId}>
-            {factObject.text}
+    async function addFactsToLayout(favoriteDataObject) {
+      const favoriteFactsCollection = [];
+      for (const favoriteId in favoriteDataObject) {
+        const [receivedFactObject] = await FactsLoader('', favoriteDataObject[favoriteId]);
+        favoriteFactsCollection.push(
+          <div className='factsBox' key={favoriteId}>
+            {receivedFactObject.text}
             {
               <button
                 className='btn'
-                onClick={() => RemoverFromFirebase(userId, 'favoriteFacts', favoriteFactId)}
+                onClick={() => RemoverFromFirebase(userId, 'favoriteFacts', favoriteId)}
               >
                 delete
               </button>
@@ -31,20 +31,20 @@ export function FavoriteFactsComponentAdder({ userId }) {
           </div>,
         );
       }
-      setFavotiteFacts(downloadedFavoriteFacts);
+      setFactsLayout(favoriteFactsCollection);
     }
   };
 
-  return !FavotiteFacts ? (
+  return !factsLayout ? (
     <button className='btn' onClick={() => onFavoriteButtonClick()}>
       Favorite Facts
     </button>
   ) : (
     <div>
-      <button className='btn' onClick={() => setFavotiteFacts('')}>
+      <button className='btn' onClick={() => setFactsLayout('')}>
         Hide Favorite Facts
       </button>
-      {FavotiteFacts}
+      {factsLayout}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '../../../store/slices/userSlice';
 import { useDispatch } from 'react-redux';
-import { DataCreatorForNewUser } from '../../DataCreatorForNewUser/DataCreatorForNewUser';
+import { createDataForNewUser } from '../../FirebaseComponents/createDataForNewUser/createDataForNewUser';
 
 export function RegistrationFormAdder() {
   const [email, setEmail] = useState('');
@@ -27,7 +27,7 @@ export function RegistrationFormAdder() {
           }),
         );
 
-        DataCreatorForNewUser(user.uid, user.email);
+        createDataForNewUser(user.uid, user.email);
         navigate('/');
       })
       .catch((error) => {

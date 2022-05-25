@@ -1,23 +1,23 @@
 export async function FactsLoader(factQuantity, factId) {
-  const baseUrl = new URL('https://cat-fact.herokuapp.com/facts/591f98803b90f7150a19c229');
-  let newUrl;
+  const API_BASIC_URL = new URL(REACT_APP_BASIC_API_CAT_FACTS_URL);
+  let apiRequest;
   if (!factId) {
-    newUrl = new URL('random', baseUrl);
-    newUrl.searchParams.set('animal_type', 'cat');
-    newUrl.searchParams.set('amount', factQuantity);
+    apiRequest = new URL('random', API_BASIC_URL);
+    apiRequest.searchParams.set('animal_type', 'cat');
+    apiRequest.searchParams.set('amount', factQuantity);
   } else {
-    newUrl = new URL(factId, baseUrl);
+    apiRequest = new URL(factId, API_BASIC_URL);
   }
-  const result = await fetch(newUrl, {
+  const apiRequestResult = await fetch(apiRequest, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
   });
-  const resultJSON = await result.json();
-  if (!Array.isArray(resultJSON)) {
-    return [resultJSON];
+  const apiRequestResultJSON = await apiRequestResult.json();
+  if (!Array.isArray(apiRequestResultJSON)) {
+    return [apiRequestResultJSON];
   } else {
-    return resultJSON;
+    return apiRequestResultJSON;
   }
 }

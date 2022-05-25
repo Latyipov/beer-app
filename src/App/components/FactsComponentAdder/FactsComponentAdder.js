@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './FactsComponentAdder.css';
-import { CounterAdder } from '../CounterAdder/CounterAdder';
+import { changeCounterValue } from '../changeCounterValue/changeCounterValue';
 import { FactsLoader } from '../FactsLoader/FactsLoader';
 import { PusherToFirebase } from '../FirebaseComponents/PusherToFirebase/PusherToFirebase';
 
@@ -9,7 +9,7 @@ export function FactsComponentAdder({ userId }) {
   const [facts, setFacts] = useState('');
 
   const onCounterButtonClick = (counterDirection) => {
-    const counterResult = CounterAdder(counterDirection, factValue, 1);
+    const counterResult = changeCounterValue(counterDirection, factValue, 1);
     setFactValue(counterResult);
   };
 

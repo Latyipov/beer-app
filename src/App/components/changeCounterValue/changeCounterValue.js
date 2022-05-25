@@ -1,4 +1,4 @@
-export function CounterAdder(counterDirection, currentValue, counterStep) {
+export function changeCounterValue (counterDirection, currentValue, counterStep) {
   if (counterDirection === '+') {
     return currentValue + counterStep;
   }

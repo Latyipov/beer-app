@@ -1,8 +1,8 @@
 import React from 'react';
 
 export function TabButtonLoader({ tabButton, activeTab, changeActiveTab }) {
-  const onToggleTab = (tabValue) => {
-    changeActiveTab(tabValue);
+  const onToggleTab = (tabName) => {
+    changeActiveTab(tabName);
   };
   return (
     <button
