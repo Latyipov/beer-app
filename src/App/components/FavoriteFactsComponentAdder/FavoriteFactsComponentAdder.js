@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FactsLoader } from '../FactsLoader/FactsLoader';
-import { RemoverFromFirebase } from '../FirebaseComponents/RemoverFromFirebase/RemoverFromFirebase';
+import { RemoverFromFirebase } from '@components/firebaseFunctions/RemoverFromFirebase/RemoverFromFirebase';
 
 import { getDatabase, ref, onValue } from 'firebase/database';
 
@@ -8,7 +8,10 @@ export function FavoriteFactsComponentAdder({ userId }) {
   const [factsLayout, setFactsLayout] = useState('');
   const onFavoriteButtonClick = async () => {
     const firebaseDataBase = getDatabase();
-    const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + 'favoriteFacts');
+    const firebaseDataBaseReference = ref(
+      firebaseDataBase,
+      'users/' + userId + '/' + 'favoriteFacts',
+    );
     onValue(firebaseDataBaseReference, (snapshot) => {
       const snapshotData = snapshot.val();
       addFactsToLayout(snapshotData);

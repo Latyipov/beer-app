@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function TabButtonLoader({ tabButton, activeTab, changeActiveTab }) {
+export function TabButton({ tabButton, activeTab, changeActiveTab }) {
   const onToggleTab = (tabName) => {
     changeActiveTab(tabName);
   };

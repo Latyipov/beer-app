@@ -1,12 +1,12 @@
 import React from 'react';
-import { AuthorizationFormAdder } from '../AuthorizationFormAdder/AuthorizationFormAdder';
-import { RegistrationFormAdder } from '../RegistrationFormAdder/RegistrationFormAdder';
+import { AuthorizationForm } from '@components/EnterComponents/AuthorizationForm/AuthorizationForm';
+import { RegistrationForm } from '@components/EnterComponents//RegistrationForm/RegistrationForm';
 
 export function FormSwitcher({ activeTab }) {
   switch (activeTab) {
     case 'Authorization':
-      return <AuthorizationFormAdder />;
+      return <AuthorizationForm />;
     case 'Registration':
-      return <RegistrationFormAdder />;
+      return <RegistrationForm />;
   }
 }

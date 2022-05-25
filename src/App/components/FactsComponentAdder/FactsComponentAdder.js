@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './FactsComponentAdder.css';
 import { changeCounterValue } from '../changeCounterValue/changeCounterValue';
 import { FactsLoader } from '../FactsLoader/FactsLoader';
-import { PusherToFirebase } from '../FirebaseComponents/PusherToFirebase/PusherToFirebase';
+import { PusherToFirebase } from '@components/firebaseFunctions/PusherToFirebase/PusherToFirebase';
 
 export function FactsComponentAdder({ userId }) {
   const [factValue, setFactValue] = useState(1);

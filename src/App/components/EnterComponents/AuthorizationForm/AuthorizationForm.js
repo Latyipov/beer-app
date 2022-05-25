@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { setUser } from '../../../store/slices/userSlice';
+import { setUser } from '@/App/store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 
-export function AuthorizationFormAdder() {
+export function AuthorizationForm() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [invalidError, setInvalidError] = useState('');
@@ -49,7 +49,7 @@ export function AuthorizationFormAdder() {
           name='Email'
           placeholder='Email'
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
         />
         <input
           className='EnterForm__item'
@@ -58,7 +58,7 @@ export function AuthorizationFormAdder() {
           minLength='6'
           placeholder='Password'
           value={pass}
-          onChange={(e) => setPass(e.target.value)}
+          onChange={(event) => setPass(event.target.value)}
         />
         <button className='btn' type='submit' onClick={onFormSubmitClick}>
           Enter
