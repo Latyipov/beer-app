@@ -1,6 +1,6 @@
 import { getDatabase, ref, remove } from 'firebase/database';
 
-export async function RemoverFromFirebase(userId, dataSection, factId) {
+export async function removeDataFromFirebase(userId, dataSection, factId) {
   const firebaseDataBase = getDatabase();
   const firebaseDataBaseReference = ref(
     firebaseDataBase,

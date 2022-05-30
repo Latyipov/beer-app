@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { setUser } from '@/App/store/slices/userSlice';
+import { setUser } from '@/App/Redux/store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 
 export function AuthorizationForm() {

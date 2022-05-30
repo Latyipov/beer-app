@@ -1,4 +1,4 @@
-export async function FactsLoader(factQuantity, factId) {
+export async function loadSomeFacts(factQuantity, factId) {
   // we need this disable line because this const received from dotenv, but eslint find this like error
   // eslint-disable-next-line no-undef
   const API_BASIC_URL = new URL(REACT_APP_BASIC_API_CAT_FACTS_URL);

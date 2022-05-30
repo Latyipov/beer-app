@@ -1,10 +1,10 @@
 import { getDatabase, ref, push } from 'firebase/database';
-import { FromFirebaseDataGetter } from '../FromFirebaseDataGetter/FromFirebaseDataGetter';
+import { getDataFromFirebase } from '@components/firebaseFunctions/getDataFromFirebase/getDataFromFirebase';
 
-export async function PusherToFirebase(userId, dataSection, factId) {
+export async function pushDataToFirebase(userId, dataSection, factId) {
   const firebaseDataBase = getDatabase();
   const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + dataSection);
-  const receivedFirebaseData = await FromFirebaseDataGetter(userId, dataSection);
+  const receivedFirebaseData = await getDataFromFirebase(userId, dataSection);
   let factNotRepeat = true;
   for (const firebaseFactId in receivedFirebaseData) {
     if (receivedFirebaseData[firebaseFactId] === factId) {
