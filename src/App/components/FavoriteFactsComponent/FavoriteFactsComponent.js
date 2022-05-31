@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import { loadSomeFacts } from '@components/loadSomeFacts/loadSomeFacts';
 import { removeDataFromFirebase } from '@components/firebaseFunctions/removeDataFromFirebase/removeDataFromFirebase';
-
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { listenDataFromFirebase } from '@components/firebaseFunctions/listenDataFromFirebase/listenDataFromFirebase';
+import { stopListenDataFromFirebase } from '@components/firebaseFunctions/stopListenDataFromFirebase/stopListenDataFromFirebase';
 
 export function FavoriteFactsComponent({ userId }) {
   const [favoriteFactsLayout, setFavoriteFactsLayout] = useState('');
   const onFavoriteFactsButtonClick = async () => {
-    const firebaseDataBase = getDatabase();
-    const firebaseDataBaseReference = ref(
-      firebaseDataBase,
-      'users/' + userId + '/' + 'favoriteFacts',
-    );
-    onValue(firebaseDataBaseReference, (snapshot) => {
-      const snapshotDataFromFirebase = snapshot.val();
-      transformDataToLayout(snapshotDataFromFirebase);
-    });
+    listenDataFromFirebase(userId, 'favoriteFacts', transformDataToLayout);
     async function transformDataToLayout(favoriteDataObject) {
       const favoriteFactsCollection = [];
       for (const favoriteId in favoriteDataObject) {
@@ -36,6 +28,11 @@ export function FavoriteFactsComponent({ userId }) {
       }
       setFavoriteFactsLayout(favoriteFactsCollection);
     }
+    return stop;
+  };
+  const onHideFavoriteFactsButtonClick = () => {
+    setFavoriteFactsLayout('');
+    stopListenDataFromFirebase(userId, 'favoriteFacts');
   };
 
   return !favoriteFactsLayout ? (
@@ -44,7 +41,7 @@ export function FavoriteFactsComponent({ userId }) {
     </button>
   ) : (
     <div>
-      <button className='btn' onClick={() => setFavoriteFactsLayout('')}>
+      <button className='btn' onClick={() => onHideFavoriteFactsButtonClick()}>
         Hide Favorite Facts
       </button>
       {favoriteFactsLayout}
