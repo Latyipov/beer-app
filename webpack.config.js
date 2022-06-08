@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
-console.log('/' + process.env.URL_PATH || '');
+
 module.exports = {
   target: 'web',
   mode: isDev ? 'development' : 'production',
@@ -18,6 +18,12 @@ module.exports = {
     filename: '[name].bundle.js',
     chunkFilename: '[name]-[id].js',
     clean: true,
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@components': path.resolve(__dirname, 'src/App/components'),
+    },
   },
   devtool: isDev ? 'eval-cheap-module-source-map' : 'source-map',
   module: {
@@ -58,6 +64,9 @@ module.exports = {
       REACT_APP_FIREBASE_APP_ID: JSON.stringify(process.env.REACT_APP_FIREBASE_APP_ID),
       REACT_APP_FIREBASE_MEASUREMENT_ID: JSON.stringify(
         process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+      ),
+      REACT_APP_BASIC_API_CAT_FACTS_URL: JSON.stringify(
+        process.env.REACT_APP_BASIC_API_CAT_FACTS_URL,
       ),
       URL_PATH: JSON.stringify(process.env.URL_PATH || ''),
     }),
