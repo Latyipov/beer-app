@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { loadStateToLocalStorage, saveStateToLocalStorage } from './lockalStorageFunctions';
 
-const initialState = {
-  email: null,
-  token: null,
-  id: null,
-};
+const initialState = loadStateToLocalStorage();
 
 const userSlice = createSlice({
   name: 'user',
@@ -14,11 +11,13 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.id = action.payload.id;
+      saveStateToLocalStorage(state);
     },
     removeUser(state) {
       state.email = null;
       state.token = null;
       state.id = null;
+      localStorage.clear();
     },
   },
 });
