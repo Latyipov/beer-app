@@ -7,6 +7,6 @@ export async function createDataForNewUser(userId, userEmail) {
   set(firebaseDataBaseReference, {
     username: userEmail,
     email: userEmail,
-    favoriteFacts: '',
+    favorite: '',
   });
 }

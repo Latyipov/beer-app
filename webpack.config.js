@@ -65,9 +65,7 @@ module.exports = {
       REACT_APP_FIREBASE_MEASUREMENT_ID: JSON.stringify(
         process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
       ),
-      REACT_APP_BASIC_API_CAT_FACTS_URL: JSON.stringify(
-        process.env.REACT_APP_BASIC_API_CAT_FACTS_URL,
-      ),
+      REACT_APP_BASIC_BEER_API_URL: JSON.stringify(process.env.REACT_APP_BASIC_BEER_API_URL),
       URL_PATH: JSON.stringify(process.env.URL_PATH || ''),
     }),
   ],

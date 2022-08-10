@@ -35,6 +35,10 @@ a:hover {
   background-color: #3f92ff86;
   transform: translate(0, 0.05em);
 }
+.btn:disabled {
+  background-color: #37373786;
+  transform: translate(0, 0);
+}
 .error {
   color: red;
   font-size: 20px;

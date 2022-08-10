@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { EnterPage } from '@/App/pages/EnterPage';
-import { MainPage } from '@/App//pages/MainPage';
+import { MainPage } from '@/App/pages/MainPage';
 import { NotFoundPage } from '@/App/pages/NotFoundPage';
 import './App.css';
 
