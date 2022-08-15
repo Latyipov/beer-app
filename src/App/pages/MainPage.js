@@ -10,13 +10,13 @@ import './MainPage.css';
 
 export function MainPage() {
   const dispatch = useDispatch();
-  const { isAuthorized, userEmail } = useAuthorization();
+  const { isAuthorized, userName } = useAuthorization();
   return isAuthorized ? (
     <div className='bodyApp'>
       <button className='btn outButton' onClick={() => dispatch(removeUser())}>
         Sign out
       </button>{' '}
-      <h1>Hello {userEmail} !change for name</h1>
+      <h1>Hello {userName}!</h1>
       <RandomApiItem />
       <FavoriteItems />
     </div>

@@ -3,6 +3,9 @@ body {
   height: 100%;
   color: white;
 }
+h2 {
+  color: black;
+}
 .bodyApp {
   padding: 5rem;
   text-align: center;

@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-import { FormSwitcher } from '@components/EnterComponents/FormSwitcher/FormSwitcher';
-import { TabButton } from '@components/EnterComponents/TabButton/TabButton';
+import { AuthorizationForm } from '@components/EnterComponents/AuthorizationForm/AuthorizationForm';
+import { RegistrationForm } from '@components/EnterComponents//RegistrationForm/RegistrationForm';
 
 export function EnterForm() {
   const [activeTab, setActiveTab] = useState('Authorization');
 
-  const changeActiveTab = (isActiveTab) => {
+  const onChangeActiveTab = (isActiveTab) => {
     setActiveTab(isActiveTab);
   };
 
   return (
     <div className='bodyApp__enterForm'>
       <div className='tabButtons'>
-        <TabButton
-          tabButton='Authorization'
-          activeTab={activeTab}
-          changeActiveTab={changeActiveTab}
-        />
-        <TabButton
-          tabButton='Registration'
-          activeTab={activeTab}
-          changeActiveTab={changeActiveTab}
-        />
+        <button
+          className={`tab ${activeTab === 'Authorization' && ' active-tab'}`}
+          onClick={() => onChangeActiveTab('Authorization')}
+        >
+          Authorization
+        </button>
+        <button
+          className={`tab ${activeTab === 'Registration' && ' active-tab'}`}
+          onClick={() => onChangeActiveTab('Registration')}
+        >
+          Registration
+        </button>
       </div>
-      <FormSwitcher activeTab={activeTab} />
+      {activeTab === 'Authorization' && <AuthorizationForm />}
+      {activeTab === 'Registration' && <RegistrationForm />}
     </div>
   );
 }
