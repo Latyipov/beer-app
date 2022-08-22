@@ -9,12 +9,14 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       state.email = action.payload.email;
+      state.name = action.payload.name;
       state.token = action.payload.token;
       state.id = action.payload.id;
       saveStateToLocalStorage(state);
     },
     removeUser(state) {
       state.email = null;
+      state.name = null;
       state.token = null;
       state.id = null;
       localStorage.clear();
