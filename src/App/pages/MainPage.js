@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { useAuthorization } from '@/App/Redux/hooks/use-auth';
 import { RandomApiItem } from '@components/RandomApiItem/RandomApiItem';
 import { FavoriteItems } from '@components/FavoriteItems/FavoriteItems';
@@ -15,7 +15,8 @@ export function MainPage() {
     <div className='bodyApp'>
       <button className='btn outButton' onClick={() => dispatch(removeUser())}>
         Sign out
-      </button>{' '}
+      </button>
+      <Link to='/all-bear'>All bear</Link>
       <h1>Hello {userName}!</h1>
       <RandomApiItem />
       <FavoriteItems />
