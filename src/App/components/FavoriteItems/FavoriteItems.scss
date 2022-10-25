@@ -1,0 +1,9 @@
+@import '../../globalStyles/globalStyles.scss';
+
+.favorite {
+  @include flex(column, nowrap);
+  &__button {
+    @include button;
+    margin: 10px 5px;
+  }
+}

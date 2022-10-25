@@ -1,11 +1,11 @@
 import React from 'react';
 import { EnterForm } from '@components/EnterComponents/EnterForm/EnterForm';
-import './EnterPage.css';
+import './EnterPage.scss';
 
 export function EnterPage() {
   return (
-    <div className='bodyApp'>
-      <h1 className='bodyApp__h1'>Welcome</h1>
+    <div className='enter-page'>
+      <h1 className='enter-page__header'>Welcome</h1>
       <EnterForm />
     </div>
   );

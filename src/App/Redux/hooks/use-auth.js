@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-export function useAuthorization() {
+export function useAuthentication() {
   const { email, name, token, id } = useSelector((state) => state.user);
   return {
     isAuthorized: !!email,

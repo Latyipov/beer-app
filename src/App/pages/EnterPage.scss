@@ -1,0 +1,21 @@
+@import '../globalStyles/globalStyles.scss';
+
+.enter-page {
+  @include flex(column, nowrap, center, flex-start);
+  background-image: url('../images/background_wallpaper.jpg');
+  background-repeat: repeat;
+  background-size: auto;
+  min-height: 100vh;
+
+  &__header {
+    @include text(50px);
+    font-style: italic;
+    font-weight: 600;
+    background-color: #f5c202d6;
+    margin-top: 10%;
+    margin-bottom: -2rem;
+    padding: 2rem;
+    border-top-left-radius: 17rem;
+    border-top-right-radius: 17rem;
+  }
+}

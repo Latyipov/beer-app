@@ -7,8 +7,8 @@ import { useInputControl } from '@components/EnterComponents/useInputControl';
 import { ValidationErrors } from '@components/EnterComponents/ValidationErrors/ValidationErrors';
 import { getDataFromFirebase } from '@components/firebaseFunctions/getDataFromFirebase/getDataFromFirebase';
 
-export function AuthorizationForm() {
-  const [authorisationError, setauthorisAtionError] = useState('');
+export function AuthenticationForm() {
+  const [authenticationError, setAuthenticationError] = useState('');
 
   const email = useInputControl('', { isInputEmpty: true, minLength: 3, isEmailValid: true });
   const password = useInputControl('', { isInputEmpty: true, minLength: 5 });
@@ -35,33 +35,33 @@ export function AuthorizationForm() {
       .catch((error) => {
         switch (error.code) {
           case 'auth/invalid-email':
-            setauthorisAtionError('Wrong email. Try again.');
+            setAuthenticationError('Wrong email. Try again.');
             break;
           case 'auth/wrong-password':
-            setauthorisAtionError('Wrong password. Try again.');
+            setAuthenticationError('Wrong password. Try again.');
             break;
           case 'auth/user-not-found':
-            setauthorisAtionError('User not found.');
+            setAuthenticationError('User not found.');
             break;
           case 'auth/too-many-requests':
-            setauthorisAtionError('Too many requests. Try later.');
+            setAuthenticationError('Too many requests. Try later.');
             break;
           default:
-            setauthorisAtionError("Can't enter. Something wrong.");
+            setAuthenticationError("Can't enter. Something wrong.");
         }
       });
   };
 
   return (
-    <div className='EnterForm'>
-      <h2>Authorization</h2>
-      <form>
+    <div className='enter-form'>
+      <h2 className='enter-form__head'>Authentication</h2>
+      <form className='enter-form__form-box'>
         <ValidationErrors
           isInputSelected={email.isInputSelected}
           validationResult={email.validationResult}
         />
         <input
-          className='EnterForm__item'
+          className='enter-form__input'
           type='email'
           name='Email'
           placeholder='Email'
@@ -75,7 +75,7 @@ export function AuthorizationForm() {
           validationResult={password.validationResult}
         />
         <input
-          className='EnterForm__item'
+          className='enter-form__input'
           type='password'
           name='Password'
           placeholder='Password'
@@ -85,14 +85,14 @@ export function AuthorizationForm() {
         />
         <button
           disabled={!email.validationResult.isInputValid || !password.validationResult.isInputValid}
-          className='btn'
+          className='enter-form__button'
           type='submit'
           onClick={onFormSubmitClick}
         >
           Enter
         </button>
       </form>
-      <div className='error'>{authorisationError}</div>
+      <div className='error'>{authenticationError}</div>
     </div>
   );
 }

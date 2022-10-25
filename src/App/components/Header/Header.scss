@@ -1,0 +1,54 @@
+@import '../../globalStyles/globalStyles.scss';
+
+.header {
+  background-color: $light-background;
+  height: 5rem;
+  @include flex(row, nowrap, center, space-between);
+  padding: 0 10px;
+
+  &__greet {
+    @include text(35px, #472212ed);
+    margin: 0 2rem;
+    vertical-align: middle;
+    font-style: italic;
+  }
+
+  &__navigation-list {
+    flex: 2;
+  }
+  &__nav-button {
+    position: relative;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 5px;
+    @include text(30px);
+
+    &:active {
+      color: #472212ed;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: black;
+      transition: width 0.3s ease-out;
+    }
+    &:hover::after {
+      width: 100%;
+    }
+    &:active::after {
+      background-color: #472212ed;
+    }
+    &--active::after {
+      width: 100%;
+    }
+  }
+  &__out-button {
+    @include button;
+    margin: 0 2rem;
+  }
+}

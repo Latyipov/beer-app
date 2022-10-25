@@ -1,27 +1,18 @@
 import React from 'react';
-import { Navigate, Link } from 'react-router-dom';
-import { useAuthorization } from '@/App/Redux/hooks/use-auth';
 import { RandomApiItem } from '@components/RandomApiItem/RandomApiItem';
 import { FavoriteItems } from '@components/FavoriteItems/FavoriteItems';
-import { useDispatch } from 'react-redux';
-import { removeUser } from '@/App/Redux/store/slices/userSlice';
+import { Header } from '@components/Header/Header';
 
-import './MainPage.css';
+import './MainPage.scss';
 
 export function MainPage() {
-  const dispatch = useDispatch();
-  const { isAuthorized, userName } = useAuthorization();
-  return isAuthorized ? (
-    <div className='bodyApp'>
-      <button className='btn outButton' onClick={() => dispatch(removeUser())}>
-        Sign out
-      </button>
-      <Link to='/all-bear'>All bear</Link>
-      <h1>Hello {userName}!</h1>
-      <RandomApiItem />
-      <FavoriteItems />
+  return (
+    <div className='main'>
+      <Header />
+      <main className='main__body'>
+        <RandomApiItem />
+        <FavoriteItems />
+      </main>
     </div>
-  ) : (
-    <Navigate to='/signin' />
   );
 }

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import '@components/RandomApiItem/RandomApiItem.css';
 import { sendApiRequest } from '@components/sendApiRequest/sendApiRequest';
 import { Item } from '@components/Item/Item';
 import { pushDataToFirebase } from '@components/firebaseFunctions/pushDataToFirebase/pushDataToFirebase';
-import { useAuthorization } from '@/App/Redux/hooks/use-auth';
+import { useAuthentication } from '@/App/Redux/hooks/use-auth';
 import { TableList } from '@components/TableList/TableList';
+
+import '@components/RandomApiItem/RandomApiItem.scss';
 
 export function RandomApiItem() {
   const [randomItem, setRandomItem] = useState('');
-  const { userId } = useAuthorization();
+  const { userId } = useAuthentication();
 
   const onShowRandomItemButtonClick = async () => {
     const responseData = await sendApiRequest('beers/random');
@@ -20,13 +21,13 @@ export function RandomApiItem() {
   };
 
   return (
-    <div>
-      <button className='btn' onClick={onShowRandomItemButtonClick}>
+    <div className='random-item'>
+      <button className='random-item__button' onClick={onShowRandomItemButtonClick}>
         Show random Beer
       </button>
 
       {randomItem && (
-        <button className='btn' onClick={clearRandomItem}>
+        <button className='random-item__button' onClick={clearRandomItem}>
           Hide
         </button>
       )}
@@ -42,7 +43,7 @@ export function RandomApiItem() {
               itemImgUrl={itemObject.image_url}
               actionItemButton={
                 <button
-                  className='btn'
+                  className='table__button'
                   onClick={() =>
                     pushDataToFirebase(userId, 'favorite', {
                       id: itemObject.id,

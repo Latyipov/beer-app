@@ -1,0 +1,24 @@
+@import '../../globalStyles/globalStyles.scss';
+
+.table {
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #fff4e0eb;
+  border-collapse: collapse;
+  max-width: 80%;
+  &__row {
+    border-top: 1px solid #472212ed;
+  }
+  &__cells {
+    @include text(20px);
+    padding: 10px;
+    min-width: 60px;
+    text-align: center;
+    &:not(:last-child) {
+      border-right: 1px solid #472212ed;
+    }
+  }
+  &__button {
+    @include button;
+  }
+}

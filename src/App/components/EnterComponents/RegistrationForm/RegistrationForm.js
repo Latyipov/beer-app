@@ -56,15 +56,15 @@ export function RegistrationForm() {
   };
 
   return (
-    <div className='EnterForm'>
-      <h2>Registration</h2>
-      <form>
+    <div className='enter-form'>
+      <h2 className='enter-form__head'>Registration</h2>
+      <form className='enter-form__form-box'>
         <ValidationErrors
           isInputSelected={userName.isInputSelected}
           validationResult={userName.validationResult}
         />
         <input
-          className='EnterForm__item'
+          className='enter-form__input'
           type='text'
           name='UserName'
           placeholder='Name'
@@ -77,7 +77,7 @@ export function RegistrationForm() {
           validationResult={email.validationResult}
         />
         <input
-          className='EnterForm__item'
+          className='enter-form__input'
           type='email'
           name='Email'
           placeholder='Email'
@@ -91,7 +91,7 @@ export function RegistrationForm() {
           validationResult={password.validationResult}
         />
         <input
-          className='EnterForm__item'
+          className='enter-form__input'
           type='password'
           name='Password'
           placeholder='Password'
@@ -101,7 +101,7 @@ export function RegistrationForm() {
         />
         <button
           disabled={!email.validationResult.isInputValid || !password.validationResult.isInputValid}
-          className='btn'
+          className='enter-form__button'
           type='submit'
           onClick={onFormSubmitClick}
         >

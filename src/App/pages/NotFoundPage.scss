@@ -1,0 +1,31 @@
+@import '../globalStyles/globalStyles.scss';
+
+.not-found-page {
+  @include flex(column, nowrap);
+  &__img-title-box {
+    position: relative;
+    min-width: 320px;
+  }
+  &__image {
+    position: relative;
+    top: 30px;
+    left: 100px;
+    height: 280px;
+    z-index: 1;
+  }
+  &__title {
+    position: relative;
+    top: -30px;
+    @include text(75px, rgb(132, 0, 0));
+    margin: 0;
+    white-space: nowrap;
+    font-weight: 900;
+    min-width: 300px;
+  }
+  &__message {
+    @include text(25px);
+  }
+  &__button {
+    @include button;
+  }
+}

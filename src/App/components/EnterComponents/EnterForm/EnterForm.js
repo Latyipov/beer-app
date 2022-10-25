@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
-import { AuthorizationForm } from '@components/EnterComponents/AuthorizationForm/AuthorizationForm';
+import { AuthenticationForm } from '@/App/components/EnterComponents/AuthenticationForm/AuthenticationForm';
 import { RegistrationForm } from '@components/EnterComponents//RegistrationForm/RegistrationForm';
+import './EnterForm.scss';
 
 export function EnterForm() {
-  const [activeTab, setActiveTab] = useState('Authorization');
+  const [activeTab, setActiveTab] = useState('Authentication');
 
   const onChangeActiveTab = (isActiveTab) => {
     setActiveTab(isActiveTab);
   };
 
   return (
-    <div className='bodyApp__enterForm'>
-      <div className='tabButtons'>
+    <div className='enter-section__body'>
+      <div className='enter-section__tab'>
         <button
-          className={`tab ${activeTab === 'Authorization' && ' active-tab'}`}
-          onClick={() => onChangeActiveTab('Authorization')}
+          className={`enter-section__tab-button ${
+            activeTab === 'Authentication' && 'enter-section__tab-button--active'
+          }`}
+          onClick={() => onChangeActiveTab('Authentication')}
         >
-          Authorization
+          Authentication
         </button>
         <button
-          className={`tab ${activeTab === 'Registration' && ' active-tab'}`}
+          className={`enter-section__tab-button ${
+            activeTab === 'Registration' && 'enter-section__tab-button--active'
+          }`}
           onClick={() => onChangeActiveTab('Registration')}
         >
           Registration
         </button>
       </div>
-      {activeTab === 'Authorization' && <AuthorizationForm />}
+      {activeTab === 'Authentication' && <AuthenticationForm />}
       {activeTab === 'Registration' && <RegistrationForm />}
     </div>
   );
