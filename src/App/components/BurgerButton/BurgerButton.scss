@@ -1,0 +1,47 @@
+@import '../../globalStyles/globalStyles.scss';
+
+.burger-button {
+  position: absolute;
+  top: 1.5rem;
+  left: 2.5rem;
+  @include flex(column, nowrap, center, space-around);
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1000;
+
+  &:focus {
+    outline: none;
+  }
+
+  &__line {
+    width: 2rem;
+    height: 0.25rem;
+    background: black;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+
+    &--transform {
+      &:first-child {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  &--fixed {
+    position: fixed;
+  }
+}
