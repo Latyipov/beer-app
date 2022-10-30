@@ -3,59 +3,56 @@ import { removeDataFromFirebase } from '@components/firebaseFunctions/removeData
 import { listenDataFromFirebase } from '@components/firebaseFunctions/listenDataFromFirebase/listenDataFromFirebase';
 import { stopListenDataFromFirebase } from '@components/firebaseFunctions/stopListenDataFromFirebase/stopListenDataFromFirebase';
 import { useAuthentication } from '@/App/Redux/hooks/use-auth';
-import { Item } from '../Item/Item';
+import { TableItem } from '../TableItem/TableItem';
 import { TableList } from '@components/TableList/TableList';
+import { Loading } from '@components/Loading/Loading';
+import { Error } from '@components/Error/Error';
 
 import './FavoriteItems.scss';
 
 export function FavoriteItems() {
   const { userId } = useAuthentication();
-  const [favoriteListData, setFavoriteListData] = useState('');
-  const [isFavoriteButtonOn, setIsFavoriteButtonOn] = useState(false);
+  const [favoriteListData, setFavoriteListData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (isFavoriteButtonOn) {
-      listenDataFromFirebase(userId, 'favorite', getData);
-      async function getData(favoriteListDataObject) {
-        setFavoriteListData(favoriteListDataObject);
-      }
-      return () => {
-        setFavoriteListData('');
-        stopListenDataFromFirebase(userId, 'favorite');
-      };
-    }
-  }, [isFavoriteButtonOn]);
+    listenDataFromFirebase(userId, 'favorite', setFavoriteListData, setError, setLoading);
+    return () => {
+      setFavoriteListData(null);
+      stopListenDataFromFirebase(userId, 'favorite');
+    };
+  }, []);
 
-  const pushFavoriteButton = () => {
-    setIsFavoriteButtonOn(!isFavoriteButtonOn);
-  };
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <div className='favorite'>
-      <button className='favorite__button' onClick={pushFavoriteButton}>
-        {!isFavoriteButtonOn ? 'My favorite beer list' : 'Hide favorite beer list'}
-      </button>
-      {isFavoriteButtonOn && (
-        <TableList>
-          {Object.keys(favoriteListData).map((dataID) => (
-            <Item
-              key={dataID}
-              itemName={favoriteListData[dataID].name}
-              itemId={favoriteListData[dataID].id}
-              itemDescription={favoriteListData[dataID].itemDescription}
-              itemImgUrl={favoriteListData[dataID].image_url}
+      <TableList>
+        {favoriteListData &&
+          Object.entries(favoriteListData).map(([id, value]) => (
+            <TableItem
+              key={id}
+              itemName={value.name}
+              itemId={value.id}
+              itemDescription={value.itemDescription}
+              itemImgUrl={value.image_url}
               actionItemButton={
                 <button
-                  className='favorite__button'
-                  onClick={() => removeDataFromFirebase(userId, 'favorite', dataID)}
+                  className='favorites__button'
+                  onClick={() => removeDataFromFirebase(userId, 'favorite', id)}
                 >
                   delete
                 </button>
               }
             />
           ))}
-        </TableList>
-      )}
+      </TableList>
     </div>
   );
 }

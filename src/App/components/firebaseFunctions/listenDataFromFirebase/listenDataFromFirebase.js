@@ -1,12 +1,19 @@
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-export function listenDataFromFirebase(userId, dataSection, processingDataFunction) {
-  getAuth();
-  const firebaseDataBase = getDatabase();
-  const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + dataSection);
-  onValue(firebaseDataBaseReference, (snapshot) => {
-    const snapshotDataFromFirebase = snapshot.val();
-    processingDataFunction(snapshotDataFromFirebase);
-  });
+export async function listenDataFromFirebase(userId, dataSection, onSuccess, onError, onLoading) {
+  try {
+    await getAuth();
+    const firebaseDataBase = await getDatabase();
+    const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + dataSection);
+    await onValue(firebaseDataBaseReference, (snapshot) => {
+      onLoading(false);
+      const snapshotDataFromFirebase = snapshot.val();
+      onSuccess(snapshotDataFromFirebase);
+    });
+    return undefined;
+  } catch (error) {
+    onLoading(false);
+    onError(error);
+  }
 }
