@@ -2,19 +2,21 @@
 
 .header {
   background-color: $light-background;
-  height: 5rem;
-  @include flex(row, nowrap, center, space-between);
+  min-height: 5rem;
+  @include flex(column, nowrap, center, center, flex-end);
   padding: 0 10px;
 
   &__greet {
-    @include text(35px, #472212ed);
-    margin: 0 2rem;
+    @include text(30px, #472212ed);
+    margin: 0.5rem 0;
     vertical-align: middle;
     font-style: italic;
+    order: 1;
+    width: 100%;
+    text-align: center;
   }
   &__menu {
     flex: 2;
-    margin: 0 2rem;
   }
   &__navigation-list {
     display: flex;
@@ -35,9 +37,24 @@
     height: 100vh;
     background-color: rgba(40, 40, 40, 0.738);
   }
-
   &__out-button {
     @include button;
-    margin: 0 2rem;
+    padding: 10px;
+    margin: 1rem 0.5rem 0.5rem 0.5rem;
+  }
+
+  @include __tablet-screen {
+    @include flex(row, nowrap, center, space-between, center);
+    &__menu {
+      margin: 0.5rem 1rem;
+    }
+    &__out-button {
+      margin: 0.5rem;
+    }
+    &__greet {
+      margin: 0.5rem;
+      order: 0;
+      width: auto;
+    }
   }
 }

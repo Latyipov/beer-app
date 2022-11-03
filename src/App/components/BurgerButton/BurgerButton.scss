@@ -44,4 +44,9 @@
   &--fixed {
     position: fixed;
   }
+
+  @include __full-screen {
+    display: none;
+    visibility: hidden;
+  }
 }

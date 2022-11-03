@@ -6,6 +6,17 @@
 
 $light-background: #fff4e0;
 
+@mixin __tablet-screen {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+@mixin __full-screen {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
 @mixin text($size: 20px, $color: black) {
   font: {
     family: 'Alegreya Sans', sans-serif;
@@ -41,7 +52,6 @@ $light-background: #fff4e0;
 }
 @mixin button {
   border-radius: 5px;
-  padding: 10px 30px;
   @include text;
   background-color: #f5c202d6;
   border: 1px solid black;

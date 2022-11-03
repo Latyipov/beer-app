@@ -7,6 +7,7 @@ import { TableItem } from '../TableItem/TableItem';
 import { TableList } from '@components/TableList/TableList';
 import { Loading } from '@components/Loading/Loading';
 import { Error } from '@components/Error/Error';
+import { UpScrollButton } from '@components/UpScrollButton/UpScrollButton';
 
 import './FavoriteItems.scss';
 
@@ -53,6 +54,7 @@ export function FavoriteItems() {
             />
           ))}
       </TableList>
+      <UpScrollButton />
     </div>
   );
 }

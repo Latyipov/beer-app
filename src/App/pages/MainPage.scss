@@ -1,30 +1,30 @@
 @import '../globalStyles/globalStyles.scss';
 
 .main {
-  // background-image: url('../images/background_wallpaper.jpg');
-
-  // backdrop-filter: blur(8px);
-  // background-repeat: repeat;
-  // background-size: auto;
-  // min-height: 100vh;
   &__body {
+    @include flex(column);
     margin-top: 90px;
   }
+  &__button {
+    @include button;
+    padding: 10px;
+    margin: 10px 5px;
+  }
 
-  .background {
-    position: fixed;
-    background-image: url('../images/background_wallpaper.jpg');
-    background-position: bottom;
-    background-repeat: repeat;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    z-index: -999;
-  }
-  .blur {
-    background: rgba(71, 34, 18, 0.2); // Make sure this color has an opacity of less than 1
-    backdrop-filter: blur(8px); // This be the blur
-    height: 100vh;
-    width: 100%;
-  }
+  // .background {
+  //   position: fixed;
+  //   background-image: url('../images/background_wallpaper.jpg');
+  //   background-position: bottom;
+  //   background-repeat: repeat;
+  //   background-size: cover;
+  //   height: 100%;
+  //   width: 100%;
+  //   z-index: -999;
+  // }
+  // .blur {
+  //   background: rgba(71, 34, 18, 0.2);
+  //   backdrop-filter: blur(8px);
+  //   height: 100vh;
+  //   width: 100%;
+  // }
 }

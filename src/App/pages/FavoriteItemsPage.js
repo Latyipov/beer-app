@@ -1,14 +1,15 @@
 import React from 'react';
 import { Header } from '@components/Header/Header';
+import { FavoriteItems } from '@components/FavoriteItems/FavoriteItems';
+import { Background } from '@components/Background/Background';
+
+import backgroundImageLink from '@/App/images/cans-wallpaper.jpg';
 import './FavoriteItemsPage.scss';
-import { FavoriteItems } from '../components/FavoriteItems/FavoriteItems';
 
 export function FavoriteItemsPage() {
   return (
     <div className='favorites'>
-      <div className='background'>
-        <div className='blur'></div>
-      </div>
+      <Background backgroundImageLink={backgroundImageLink} />
       <Header />
       <main className='favorites__body'>
         <h1 className='favorites__title'>Favorite Beer</h1>

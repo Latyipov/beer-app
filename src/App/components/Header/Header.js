@@ -10,7 +10,6 @@ import './Header.scss';
 export function Header() {
   const dispatch = useDispatch();
   const { userName } = useAuthentication();
-
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   return (

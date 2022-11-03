@@ -6,17 +6,21 @@ import { TableList } from '@components/TableList/TableList';
 import { useAuthentication } from '@/App/Redux/hooks/use-auth';
 import { Error } from '@components/Error/Error';
 import { Loading } from '@components/Loading/Loading';
-import { Observer } from '@components/Observer/Observer';
+import { SmallLoading } from '@components/SmallLoading/SmallLoading';
+import { UpScrollButton } from '@components/UpScrollButton/UpScrollButton';
+import { LastElementObserver } from '@/App/components/LastElementObserver/LastElementObserver';
 import './AllItems.scss';
 
 export function AllItems() {
   const { userId } = useAuthentication();
   const [partData, setPartData] = useState(null);
   const [listData, setListData] = useState([]);
-  const portions = 5;
-  const [currentAPIPage, setCurrentAPIPage] = useState(64);
+  const portions = 10;
+  const [currentAPIPage, setCurrentAPIPage] = useState(1);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [smallLoading, setSmallLoading] = useState(true);
+  const [isObserverAvtive, setIsObserverAvtive] = useState(true);
 
   useEffect(() => {
     requestAPI(
@@ -29,9 +33,18 @@ export function AllItems() {
 
   useEffect(() => {
     if (partData) {
+      setSmallLoading(false);
       setListData([...listData, ...partData]);
     }
+    if (Array.isArray(partData) && partData.length === 0) {
+      setIsObserverAvtive(false);
+    }
   }, [partData]);
+
+  const isElementIntersecting = () => {
+    setSmallLoading(true);
+    setCurrentAPIPage((prevValue) => prevValue + 1);
+  };
 
   if (loading) {
     return <Loading />;
@@ -70,8 +83,9 @@ export function AllItems() {
             />
           ))}
       </TableList>
-      <Observer setCurrentAPIPage={setCurrentAPIPage} partData={partData} />
-      {/* <div ref={lastElement} className='intersec'></div> */}
+      {smallLoading && <SmallLoading />}
+      {isObserverAvtive && <LastElementObserver isElementIntersecting={isElementIntersecting} />}
+      <UpScrollButton />
     </div>
   );
 }

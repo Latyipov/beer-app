@@ -22,6 +22,7 @@
     padding-top: 4rem;
     padding-left: 0;
     margin: 2rem;
+    white-space: nowrap;
     @include flex(column, nowrap, center, center, flex-start);
   }
   &__list-item {
@@ -58,6 +59,23 @@
     }
     &--isActive::after {
       width: 100%;
+    }
+  }
+  @include __full-screen {
+    position: static;
+    transform: none;
+    height: auto;
+    max-width: none;
+
+    &__list {
+      @include clean;
+      @include flex(row, nowrap, center, flex-start);
+    }
+    &__list-item {
+      margin: 0 0 0 1.5rem;
+    }
+    &__link {
+      @include clean;
     }
   }
 }
