@@ -3,6 +3,7 @@
   @include flex(column, nowrap);
   &__button {
     @include button;
+    padding: 10px;
     margin: 10px 5px;
   }
 }
