@@ -1,0 +1,13 @@
+@import '../globalStyles/globalStyles.scss';
+
+.main-page {
+  &__body {
+    @include flex(column);
+    margin-top: 90px;
+  }
+  &__button {
+    @include button;
+    padding: 10px;
+    margin: 10px 5px;
+  }
+}

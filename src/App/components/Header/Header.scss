@@ -1,0 +1,50 @@
+@import '../../globalStyles/globalStyles.scss';
+
+.header {
+  background-color: $light-background;
+  min-height: 5rem;
+  @include flex(column, nowrap, center, center, flex-end);
+  padding: 0 10px;
+
+  &__menu {
+    flex: 2;
+  }
+  &__greet {
+    @include text(30px, #472212ed);
+    margin: 0.5rem 0;
+    vertical-align: middle;
+    font-style: italic;
+    order: 1;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__menu-liner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(40, 40, 40, 0.738);
+  }
+  &__out-button {
+    @include button;
+    padding: 10px;
+    margin: 1rem 0.5rem 0.5rem 0.5rem;
+  }
+
+  @include __tablet-screen {
+    @include flex(row, nowrap, center, space-between, center);
+    &__menu {
+      margin: 0.5rem 1rem;
+    }
+    &__out-button {
+      margin: 0.5rem;
+    }
+    &__greet {
+      margin: 0.5rem;
+      order: 0;
+      width: auto;
+    }
+  }
+}

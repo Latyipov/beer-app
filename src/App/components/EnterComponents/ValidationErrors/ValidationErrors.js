@@ -1,15 +1,20 @@
 import React from 'react';
+import './ValidationErrors.scss';
 
 export function ValidationErrors({ isInputSelected, validationResult }) {
   return (
-    <div>
+    <ul className='error-list'>
       {isInputSelected &&
         validationResult &&
-        Object.keys(validationResult).map((error) => (
-          <div key={error} className='error'>
-            {validationResult[error]}
-          </div>
-        ))}
-    </div>
+        Object.keys(validationResult).map((error) =>
+          validationResult[error] && !validationResult.isInputValid ? (
+            <li key={error} className='error'>
+              {validationResult[error]}
+            </li>
+          ) : (
+            ''
+          ),
+        )}
+    </ul>
   );
 }

@@ -1,11 +1,15 @@
 import React from 'react';
 import { EnterForm } from '@components/EnterComponents/EnterForm/EnterForm';
-import './EnterPage.css';
+import { Background } from '../components/Background/Background';
+
+import backgroundImageLink from '@/App/images/background-wallpaper.jpg';
+import './EnterPage.scss';
 
 export function EnterPage() {
   return (
-    <div className='bodyApp'>
-      <h1 className='bodyApp__h1'>Welcome</h1>
+    <div className='enter-page'>
+      <Background backgroundImageLink={backgroundImageLink} />
+      <h1 className='enter-page__header'>Welcome</h1>
       <EnterForm />
     </div>
   );

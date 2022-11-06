@@ -1,0 +1,17 @@
+@import '../globalStyles/globalStyles.scss';
+
+.favorites {
+  &__body {
+    @include flex(column);
+    padding-top: 3rem;
+  }
+  &__title {
+    @include text(40px, black);
+    background-color: #f5c202d6;
+    border-top-left-radius: 17rem;
+    border-top-right-radius: 17rem;
+    margin-top: 0;
+    margin-bottom: -2rem;
+    padding: 2rem;
+  }
+}
