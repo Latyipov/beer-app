@@ -7,7 +7,6 @@ import { TableItem } from '../TableItem/TableItem';
 import { TableList } from '@components/TableList/TableList';
 import { Loading } from '@components/Loading/Loading';
 import { Error } from '@components/Error/Error';
-import { UpScrollButton } from '@components/UpScrollButton/UpScrollButton';
 
 import './FavoriteItems.scss';
 
@@ -33,7 +32,7 @@ export function FavoriteItems() {
   }
 
   return (
-    <div className='favorite'>
+    <div className='favorite-item'>
       <TableList>
         {favoriteListData &&
           Object.entries(favoriteListData).map(([id, value]) => (
@@ -45,7 +44,7 @@ export function FavoriteItems() {
               itemImgUrl={value.image_url}
               actionItemButton={
                 <button
-                  className='favorites__button'
+                  className='favorite-item__button'
                   onClick={() => removeDataFromFirebase(userId, 'favorite', id)}
                 >
                   delete
@@ -54,7 +53,6 @@ export function FavoriteItems() {
             />
           ))}
       </TableList>
-      <UpScrollButton />
     </div>
   );
 }

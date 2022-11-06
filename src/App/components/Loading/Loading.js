@@ -1,5 +1,5 @@
 import React from 'react';
-import BeerLoader from '../../images/8175e5c30edf5a629458a6ceea3975d3.gif';
+import BeerLoader from '../../images/loading.gif';
 import './Loading.scss';
 
 export function Loading() {

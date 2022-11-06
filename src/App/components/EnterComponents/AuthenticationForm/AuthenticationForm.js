@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '@/App/Redux/store/slices/userSlice';
 import { useDispatch } from 'react-redux';
-import { useInputControl } from '@components/EnterComponents/useInputControl';
+import { useInputControl } from '@/App/components/EnterComponents/useInputControl/useInputControl';
 import { ValidationErrors } from '@components/EnterComponents/ValidationErrors/ValidationErrors';
 import { getDataFromFirebase } from '@components/firebaseFunctions/getDataFromFirebase/getDataFromFirebase';
 

@@ -1,6 +1,6 @@
 @import '../../globalStyles/globalStyles.scss';
 
-.navigation-box {
+.navigation {
   background: $light-background;
   position: fixed;
   top: 0;
@@ -13,7 +13,7 @@
   transition: transform 0.3s ease-in-out;
   transform: translateX(-150%);
 
-  &--isOpen {
+  &--open {
     transform: translateX(0);
   }
 
@@ -57,7 +57,7 @@
     &:active::after {
       background-color: #472212ed;
     }
-    &--isActive::after {
+    &--active::after {
       width: 100%;
     }
   }

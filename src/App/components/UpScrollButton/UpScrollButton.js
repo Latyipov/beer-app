@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import './UpScrollButton.scss';
 
 export function UpScrollButton() {
@@ -28,13 +29,11 @@ export function UpScrollButton() {
   }, []);
 
   return (
-    <>
-      <button
-        className={`up-button ${isUpButtonActive && 'up-button__active'}`}
-        onClick={onUpButtonClick}
-      >
-        UPBLYA
-      </button>
-    </>
+    <button
+      className={`up-button ${isUpButtonActive && 'up-button--active'}`}
+      onClick={onUpButtonClick}
+    >
+      <ArrowCircleUpIcon style={{ fontSize: '4rem', fill: 'white' }} />
+    </button>
   );
 }

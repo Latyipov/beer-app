@@ -1,5 +1,5 @@
 import React from 'react';
-import smallLoader from '../../images/PlainVapidGalah-max-1mb.gif';
+import smallLoader from '../../images/small-loading.gif';
 import './SmallLoading.scss';
 
 export function SmallLoading() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './NotFoundPage.scss';
-import DogPicture from '../images/doge_meme_PNG8.png';
+import DogPicture from '../images/error-meme.png';
 
 export function NotFoundPage() {
   const navigate = useNavigate();

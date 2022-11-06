@@ -1,6 +1,6 @@
 @import '../globalStyles/globalStyles.scss';
 
-.all-item-list {
+.all-items-page {
   &__body {
     @include flex(column);
     padding-top: 3rem;
@@ -17,8 +17,4 @@
   &__button {
     @include button;
   }
-}
-.intersec {
-  width: 100%;
-  height: 60px;
 }

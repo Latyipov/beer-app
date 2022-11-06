@@ -2,7 +2,7 @@ import React from 'react';
 import { EnterForm } from '@components/EnterComponents/EnterForm/EnterForm';
 import { Background } from '../components/Background/Background';
 
-import backgroundImageLink from '@/App/images/background_wallpaper.jpg';
+import backgroundImageLink from '@/App/images/background-wallpaper.jpg';
 import './EnterPage.scss';
 
 export function EnterPage() {

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import './LastElementObserver.scss';
 
 export function LastElementObserver({ isElementIntersecting }) {
   const observer = useRef();

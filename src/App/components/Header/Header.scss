@@ -6,6 +6,9 @@
   @include flex(column, nowrap, center, center, flex-end);
   padding: 0 10px;
 
+  &__menu {
+    flex: 2;
+  }
   &__greet {
     @include text(30px, #472212ed);
     margin: 0.5rem 0;
@@ -15,20 +18,7 @@
     width: 100%;
     text-align: center;
   }
-  &__menu {
-    flex: 2;
-  }
-  &__navigation-list {
-    display: flex;
-    flex-wrap: wrap;
-    float: right;
-    margin: 20px 0;
-    padding: 0 25px;
-  }
-  &__navigation-item {
-    list-style-type: none;
-    padding-right: 10px;
-  }
+
   &__menu-liner {
     position: fixed;
     top: 0;

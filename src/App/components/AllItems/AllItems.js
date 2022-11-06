@@ -7,7 +7,6 @@ import { useAuthentication } from '@/App/Redux/hooks/use-auth';
 import { Error } from '@components/Error/Error';
 import { Loading } from '@components/Loading/Loading';
 import { SmallLoading } from '@components/SmallLoading/SmallLoading';
-import { UpScrollButton } from '@components/UpScrollButton/UpScrollButton';
 import { LastElementObserver } from '@/App/components/LastElementObserver/LastElementObserver';
 import './AllItems.scss';
 
@@ -67,7 +66,7 @@ export function AllItems() {
               itemImgUrl={itemObject.image_url}
               actionItemButton={
                 <button
-                  className='all-item-list__button'
+                  className='all-items__button'
                   onClick={() =>
                     pushDataToFirebase(userId, 'favorite', {
                       id: itemObject.id,
@@ -85,7 +84,6 @@ export function AllItems() {
       </TableList>
       {smallLoading && <SmallLoading />}
       {isObserverAvtive && <LastElementObserver isElementIntersecting={isElementIntersecting} />}
-      <UpScrollButton />
     </div>
   );
 }

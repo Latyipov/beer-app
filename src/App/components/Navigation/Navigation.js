@@ -13,32 +13,30 @@ export function Navigation({ isBurgerOpen }) {
   };
 
   return (
-    <nav className={`navigation-box ${isBurgerOpen && 'navigation-box--isOpen'}`}>
-      <ul className='navigation-box__list'>
-        <li className='navigation-box__list-item'>
+    <nav className={`navigation ${isBurgerOpen && 'navigation--open'}`}>
+      <ul className='navigation__list'>
+        <li className='navigation__list-item'>
           <Link
-            className={`navigation-box__link ${
-              checkLocation('/main') && 'navigation-box__link--isActive'
-            }`}
+            className={`navigation__link ${checkLocation('/main') && 'navigation__link--active'}`}
             to='/main'
           >
             Home
           </Link>
         </li>
-        <li className='navigation-box__list-item'>
+        <li className='navigation__list-item'>
           <Link
-            className={`navigation-box__link ${
-              checkLocation('/all-beer') && 'navigation-box__link--isActive'
+            className={`navigation__link ${
+              checkLocation('/all-beer') && 'navigation__link--active'
             }`}
             to='/all-beer'
           >
             All beer
           </Link>
         </li>
-        <li className='navigation-box__list-item'>
+        <li className='navigation__list-item'>
           <Link
-            className={`navigation-box__link ${
-              checkLocation('/favorites') && 'navigation-box__link--isActive'
+            className={`navigation__link ${
+              checkLocation('/favorites') && 'navigation__link--active'
             }`}
             to='/favorites'
           >

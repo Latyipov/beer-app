@@ -4,7 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '@/App/Redux/store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { createDataForNewUser } from '@components/firebaseFunctions/createDataForNewUser/createDataForNewUser';
-import { useInputControl } from '@components/EnterComponents/useInputControl';
+import { useInputControl } from '@/App/components/EnterComponents/useInputControl/useInputControl';
 import { ValidationErrors } from '@components/EnterComponents/ValidationErrors/ValidationErrors';
 
 export function RegistrationForm() {
