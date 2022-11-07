@@ -11,7 +11,7 @@ export function RegistrationForm() {
   const [registartionError, setRegistartionError] = useState('');
 
   const userName = useInputControl('', { isInputEmpty: true, minLength: 3 });
-  const email = useInputControl('', { isInputEmpty: true, minLength: 3, isEmailValid: true });
+  const email = useInputControl('', { isInputEmpty: true, minLength: 5, isEmailValid: true });
   const password = useInputControl('', { isInputEmpty: true, minLength: 6 });
 
   const dispatch = useDispatch();
@@ -21,12 +21,12 @@ export function RegistrationForm() {
     event.preventDefault();
 
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email.inputValue, password.inputValue)
+    createUserWithEmailAndPassword(auth, email.inputValue.trim(), password.inputValue.trim())
       .then(({ user }) => {
         dispatch(
           setUser({
-            email: user.email,
-            name: userName.inputValue,
+            email: user.email.trim(),
+            name: userName.inputValue.trim(),
             id: user.uid,
             token: user.accessToken,
           }),

@@ -18,7 +18,7 @@ export function AuthenticationForm() {
     event.preventDefault();
 
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email.inputValue, password.inputValue)
+    signInWithEmailAndPassword(auth, email.inputValue.trim(), password.inputValue.trim())
       .then(({ user }) => {
         getDataFromFirebase(user.uid, 'username').then((userName) => {
           dispatch(

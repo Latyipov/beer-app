@@ -7,7 +7,6 @@ const validationCheck = (inputValue, validations) => {
   const [isInputValid, setIsInputValid] = useState('');
   const emailRegexValidation =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
   useEffect(() => {
     for (const validation in validations) {
       switch (validation) {
@@ -53,7 +52,7 @@ const useInputControl = (initialValue, validations) => {
   };
 
   const onChange = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value.trim());
   };
 
   const validationResult = validationCheck(inputValue, validations);
