@@ -54,7 +54,7 @@ export function AuthenticationForm() {
 
   return (
     <div className='enter-form'>
-      <h2 className='enter-form__head'>Authentication</h2>
+      <h2 className='enter-form__head'>Enter form</h2>
       <form className='enter-form__form-box'>
         <ValidationErrors
           isInputSelected={email.isInputSelected}
@@ -83,16 +83,16 @@ export function AuthenticationForm() {
           onBlur={password.onBlur}
           onChange={password.onChange}
         />
+        <div className='enter-form__error'>{authenticationError}</div>
         <button
           disabled={!email.validationResult.isInputValid || !password.validationResult.isInputValid}
           className='enter-form__button'
           type='submit'
           onClick={onFormSubmitClick}
         >
-          Enter
+          Sign in
         </button>
       </form>
-      <div className='error'>{authenticationError}</div>
     </div>
   );
 }

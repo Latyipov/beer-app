@@ -22,12 +22,16 @@
       min-width: 310px;
       max-width: 400px;
     }
+    &:nth-child(5) {
+      min-width: 135px;
+    }
   }
   &__cells-img {
     height: 150px;
   }
 
   &__button {
+    padding: 0.5rem 0.5rem;
     @include button;
   }
   @include __full-screen {

@@ -61,7 +61,8 @@ $light-background: #fff4e0;
     transform: translate(0, 0.05em);
   }
   &:disabled {
-    background-color: #f5c00269;
+    border: none;
+    background-color: #e0e0e0;
     transform: translate(0, 0);
   }
 }

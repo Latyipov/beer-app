@@ -57,7 +57,7 @@ export function RegistrationForm() {
 
   return (
     <div className='enter-form'>
-      <h2 className='enter-form__head'>Registration</h2>
+      <h2 className='enter-form__head'>Registration form</h2>
       <form className='enter-form__form-box'>
         <ValidationErrors
           isInputSelected={userName.isInputSelected}
@@ -99,16 +99,16 @@ export function RegistrationForm() {
           onBlur={password.onBlur}
           onChange={password.onChange}
         />
+        <div className='enter-form__error'>{registartionError}</div>
         <button
           disabled={!email.validationResult.isInputValid || !password.validationResult.isInputValid}
           className='enter-form__button'
           type='submit'
           onClick={onFormSubmitClick}
         >
-          Registrate
+          Sign up
         </button>
       </form>
-      <div className='error'>{registartionError}</div>
     </div>
   );
 }

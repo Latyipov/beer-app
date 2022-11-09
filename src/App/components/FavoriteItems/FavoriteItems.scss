@@ -3,7 +3,17 @@
 .favorite-item {
   @include flex(column, nowrap);
 
-  &__button {
-    @include button;
+  &__empty {
+    @include flex(column, nowrap);
+    background-color: #fff4e0ae;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  &__empty-image {
+    width: 100px;
+  }
+  &__empty-message {
+    @include text(30px);
   }
 }

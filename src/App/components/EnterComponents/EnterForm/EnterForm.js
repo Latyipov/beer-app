@@ -19,7 +19,7 @@ export function EnterForm() {
           }`}
           onClick={() => onChangeActiveTab('Authentication')}
         >
-          Authentication
+          Sign in
         </button>
         <button
           className={`enter-section__tab-button ${
@@ -27,7 +27,7 @@ export function EnterForm() {
           }`}
           onClick={() => onChangeActiveTab('Registration')}
         >
-          Registration
+          Sign up
         </button>
       </div>
       {activeTab === 'Authentication' && <AuthenticationForm />}

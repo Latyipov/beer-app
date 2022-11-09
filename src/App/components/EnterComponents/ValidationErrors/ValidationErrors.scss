@@ -2,6 +2,8 @@
 
 .error-list {
   @include clean;
-  @include text(16px, rgba(255, 0, 0, 0.936));
   text-align: left;
+  &__error {
+    @include text(16px, red);
+  }
 }

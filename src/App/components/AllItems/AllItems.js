@@ -8,6 +8,9 @@ import { Error } from '@components/Error/Error';
 import { Loading } from '@components/Loading/Loading';
 import { SmallLoading } from '@components/SmallLoading/SmallLoading';
 import { LastElementObserver } from '@/App/components/LastElementObserver/LastElementObserver';
+import { listenDataFromFirebase } from '@components/firebaseFunctions/listenDataFromFirebase/listenDataFromFirebase';
+import { stopListenDataFromFirebase } from '@components/firebaseFunctions/stopListenDataFromFirebase/stopListenDataFromFirebase';
+
 import './AllItems.scss';
 
 export function AllItems() {
@@ -19,7 +22,9 @@ export function AllItems() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [smallLoading, setSmallLoading] = useState(true);
-  const [isObserverAvtive, setIsObserverAvtive] = useState(true);
+  const [isObserverActive, setIsObserverActive] = useState(true);
+
+  const [favoriteListData, setFavoriteListData] = useState(null);
 
   useEffect(() => {
     requestAPI(
@@ -36,9 +41,44 @@ export function AllItems() {
       setListData([...listData, ...partData]);
     }
     if (Array.isArray(partData) && partData.length === 0) {
-      setIsObserverAvtive(false);
+      setIsObserverActive(false);
     }
   }, [partData]);
+
+  useEffect(() => {
+    listenDataFromFirebase(userId, 'favorite', setFavoriteListData, setError, setLoading);
+
+    return () => {
+      setFavoriteListData(null);
+      stopListenDataFromFirebase(userId, 'favorite');
+    };
+  }, []);
+
+  const buttonSwitcher = (id, name, description, imageUrl) => {
+    const isIdInFavorite =
+      favoriteListData &&
+      Object.values(favoriteListData).some((favoriteObject) => favoriteObject.id === id);
+
+    return isIdInFavorite ? (
+      <button className='table__button' disabled={true}>
+        in favorite
+      </button>
+    ) : (
+      <button
+        className='table__button'
+        onClick={() =>
+          pushDataToFirebase(userId, 'favorite', {
+            id: id,
+            name: name,
+            itemDescription: description,
+            image_url: imageUrl,
+          })
+        }
+      >
+        add to favorite
+      </button>
+    );
+  };
 
   const isElementIntersecting = () => {
     setSmallLoading(true);
@@ -64,26 +104,17 @@ export function AllItems() {
               itemId={itemObject.id}
               itemDescription={itemObject.description}
               itemImgUrl={itemObject.image_url}
-              actionItemButton={
-                <button
-                  className='all-items__button'
-                  onClick={() =>
-                    pushDataToFirebase(userId, 'favorite', {
-                      id: itemObject.id,
-                      name: itemObject.name,
-                      itemDescription: itemObject.description,
-                      image_url: itemObject.image_url,
-                    })
-                  }
-                >
-                  add to favorite
-                </button>
-              }
+              actionItemButton={buttonSwitcher(
+                itemObject.id,
+                itemObject.name,
+                itemObject.description,
+                itemObject.image_url,
+              )}
             />
           ))}
       </TableList>
       {smallLoading && <SmallLoading />}
-      {isObserverAvtive && <LastElementObserver isElementIntersecting={isElementIntersecting} />}
+      {isObserverActive && <LastElementObserver isElementIntersecting={isElementIntersecting} />}
     </div>
   );
 }

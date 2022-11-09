@@ -7,6 +7,7 @@ import { TableItem } from '../TableItem/TableItem';
 import { TableList } from '@components/TableList/TableList';
 import { Loading } from '@components/Loading/Loading';
 import { Error } from '@components/Error/Error';
+import EmptyMug from '@/App/images/empty-mug.png';
 
 import './FavoriteItems.scss';
 
@@ -44,7 +45,7 @@ export function FavoriteItems() {
               itemImgUrl={value.image_url}
               actionItemButton={
                 <button
-                  className='favorite-item__button'
+                  className='table__button'
                   onClick={() => removeDataFromFirebase(userId, 'favorite', id)}
                 >
                   delete
@@ -53,6 +54,14 @@ export function FavoriteItems() {
             />
           ))}
       </TableList>
+      {!favoriteListData && (
+        <div className='favorite-item__empty'>
+          <img src={EmptyMug} alt='empty-mug' className='favorite-item__empty-image' />
+          <p className='favorite-item__empty-message'>
+            No favorite drinks yet. Do you want to add one?
+          </p>
+        </div>
+      )}
     </div>
   );
 }
