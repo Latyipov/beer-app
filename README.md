@@ -5,18 +5,28 @@ For correct build via Webpack you must have:
 - nodejs >=16.13.1
 - npm >= 7.10.0
 
-This project have authorization and registration tool base via firebase platform.
-After authentication this app is using free-api (https://punkapi.com/documentation/v2) that recieves random name and some data about beer. If you like some beer you can save it to favorite. Data about beer is saved in Realtime Database on your account.
-Favorite table listen data from firebase and showing changing in real time. It allows to add and delete favorite facts without refreshing page.
+This app can authenticates users, shows random beer from API, shows all beers list using lazy page loading and saves favorites for users without a refresh page
+This App can authenticate and registers users via firebase/Authentication tool and Redux.
+App used free-api (https://punkapi.com/documentation/v2) that receives data about beer. You can receive random beer data, or looking all beers list. "All beers" page used lazy loading for saving resources.
+You can save beer item to favorite. App saving item data to firebase/Realtime Database on your user account.
+Favorite data listening and showing changing in real time. It allows to add and delete favorite data without refreshing page.
+
+In project I use:
+
+- Webpack to optimal bundle my project.
+- Babel for developed on React and compile js code for most browsers.
+- Eslint and Prettier that analyze, formatting and fixing my code.
+- Husky that using git hooks for checking my code before commit.
 
 ## Tech stack
 
 - HTML
-- CSS
+- CSS/SCSS
 - JavaScript
 - React
 - Redux
 - Webpack
+- Babel
 - Eslint
 - Prettier
 - Husky

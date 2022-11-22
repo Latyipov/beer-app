@@ -13,7 +13,7 @@ export function AllItemsPage() {
       <Background backgroundImageLink={backgroundImageLink} />
       <Header />
       <main className='all-items-page__body'>
-        <h1 className='all-items-page__title'>All Beer</h1>
+        <h1 className='all-items-page__title'>All Beers</h1>
         <AllItems />
         <UpScrollButton />
       </main>
