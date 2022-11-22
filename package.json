@@ -1,11 +1,11 @@
 {
-  "name": "authorization-proj",
+  "name": "beer-app",
   "version": "1.0.0",
   "description": "authorization",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
-    "build": "npm run clean && cross-env NODE_ENV=production URL_PATH='authorization-project/' webpack --mode production",
+    "build": "npm run clean && cross-env NODE_ENV=production URL_PATH='beer-app/' webpack --mode production",
     "start": "cross-env NODE_ENV=development  webpack serve --mode development --open",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
