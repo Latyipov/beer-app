@@ -13,7 +13,7 @@ export function FavoriteItemsPage() {
       <Background backgroundImageLink={backgroundImageLink} />
       <Header />
       <main className='favorites__body'>
-        <h1 className='favorites__title'>Favorite Beer</h1>
+        <h1 className='favorites__title'>Favorite Beers</h1>
         <FavoriteItems />
         <UpScrollButton />
       </main>

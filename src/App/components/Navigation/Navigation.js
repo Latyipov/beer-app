@@ -30,7 +30,7 @@ export function Navigation({ isBurgerOpen }) {
             }`}
             to='/all-beer'
           >
-            All beer
+            All beers
           </Link>
         </li>
         <li className='navigation__list-item'>
@@ -40,7 +40,7 @@ export function Navigation({ isBurgerOpen }) {
             }`}
             to='/favorites'
           >
-            Favorite beer
+            Favorite beers
           </Link>
         </li>
       </ul>

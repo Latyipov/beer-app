@@ -28,7 +28,7 @@ export function MainPage() {
           className='main-page__button'
           onClick={() => setIsFavoriteButtonOn(!isFavoriteButtonOn)}
         >
-          {isFavoriteButtonOn ? 'Hide favorite beer list' : 'My favorite beer list'}
+          {isFavoriteButtonOn ? 'Hide favorite beers list' : 'My favorite beers list'}
         </button>
         {isFavoriteButtonOn && <FavoriteItems />}
         <UpScrollButton />
