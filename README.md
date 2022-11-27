@@ -1,22 +1,22 @@
-# Authorization functional, API functional, save favorite
+# Beer App
 
 For correct build via Webpack you must have:
 
 - nodejs >=16.13.1
 - npm >= 7.10.0
 
-This app can authenticates users, shows random beer from API, shows all beers list using lazy page loading and saves favorites for users without a refresh page
-This App can authenticate and registers users via firebase/Authentication tool and Redux.
-App used free-api (https://punkapi.com/documentation/v2) that receives data about beer. You can receive random beer data, or looking all beers list. "All beers" page used lazy loading for saving resources.
-You can save beer item to favorite. App saving item data to firebase/Realtime Database on your user account.
-Favorite data listening and showing changing in real time. It allows to add and delete favorite data without refreshing page.
+This app allows users to register and log in, shows random beer from API, shows all beers list using lazy page loading and saves favorites for users.
+For registration and log in the following tools were used: firebase/Authentication tool and Redux.
+App uses free-api (https://punkapi.com/documentation/v2) that receives data about beer. You can receive random beer data, or review all beers list. "All beers" page uses lazy loading for saving resources.
+You can save beer item to favorites. The app saves item data to firebase/Realtime Database on your user account.
+Changes in Favorites are shown in real time. It allows to add and delete favorite data without refreshing page.
 
-In project I use:
+In project I used:
 
-- Webpack to optimal bundle my project.
-- Babel for developed on React and compile js code for most browsers.
-- Eslint and Prettier that analyze, formatting and fixing my code.
-- Husky that using git hooks for checking my code before commit.
+- Webpack to optimally bundle my project.
+- Babel for React and as a compiler for js code for most browsers.
+- Eslint and Prettier that analyze, format and fix my code.
+- Husky that use git hooks for checking my code before committing.
 
 ## Tech stack
 
