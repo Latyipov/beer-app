@@ -1,6 +1,6 @@
 import { getDatabase, ref, get } from 'firebase/database';
 
-export async function getDataFromFirebase(userId, dataSection) {
+export async function getData(userId, dataSection) {
   const firebaseDataBase = getDatabase();
   const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + dataSection);
   let firebaseData;

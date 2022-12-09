@@ -1,7 +1,7 @@
 import React from 'react';
 import './Table.scss';
 
-export function TableList(props) {
+export function TableList({ children }) {
   return (
     <table className='table'>
       <thead>
@@ -13,7 +13,7 @@ export function TableList(props) {
           <th className='table__cells'></th>
         </tr>
       </thead>
-      <tbody>{props.children}</tbody>
+      <tbody>{children}</tbody>
     </table>
   );
 }

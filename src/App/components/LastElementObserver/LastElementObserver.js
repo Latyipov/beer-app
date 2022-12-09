@@ -1,17 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import './LastElementObserver.scss';
 
-export function LastElementObserver({ isElementIntersecting }) {
+export function LastElementObserver({ setNextPageData }) {
   const observer = useRef();
   const lastElement = useRef();
 
   useEffect(() => {
     observer.current = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        isElementIntersecting();
+        setNextPageData();
       }
     });
     observer.current.observe(lastElement.current);
+
     return () => {
       observer.current.disconnect();
     };

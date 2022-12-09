@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from '@/App/Redux/store/slices/userSlice';
 import { useDispatch } from 'react-redux';
-import { createDataForNewUser } from '@components/firebaseFunctions/createDataForNewUser/createDataForNewUser';
+import { createNewUser } from '@api-helpers/api-helpers';
 import { useInputControl } from '@/App/components/EnterComponents/useInputControl/useInputControl';
 import { ValidationErrors } from '@components/EnterComponents/ValidationErrors/ValidationErrors';
 
@@ -32,7 +32,7 @@ export function RegistrationForm() {
           }),
         );
 
-        createDataForNewUser(user.uid, user.email, userName.inputValue);
+        createNewUser(user.uid, user.email, userName.inputValue);
         navigate('/');
       })
       .catch((error) => {

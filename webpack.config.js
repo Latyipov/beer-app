@@ -23,6 +23,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@components': path.resolve(__dirname, 'src/App/components'),
+      '@api-helpers': path.resolve(__dirname, 'src/App/components/api-helpers'),
     },
   },
   devtool: isDev ? 'eval-cheap-module-source-map' : 'source-map',

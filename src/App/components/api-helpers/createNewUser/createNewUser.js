@@ -1,6 +1,6 @@
 import { getDatabase, ref, set } from 'firebase/database';
 
-export async function createDataForNewUser(userId, userEmail, userName) {
+export async function createNewUser(userId, userEmail, userName) {
   const firebaseDataBase = getDatabase();
   const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId);
 

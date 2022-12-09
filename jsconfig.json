@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/App/components/*"]
+      "@components/*": ["src/App/components/*"],
+      "@api-helpers/*": ["src/App/components/api-helpers/*"]
     }
   },
   "exclude": ["node_modules", "dist", "build", "husky"]

@@ -1,19 +1,19 @@
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, push } from 'firebase/database';
-import { getDataFromFirebase } from '@components/firebaseFunctions/getDataFromFirebase/getDataFromFirebase';
+import { getData } from '@api-helpers/api-helpers';
 
-export async function pushDataToFirebase(userId, dataSection, itemData) {
+export async function pushData(userId, dataSection, itemData) {
   getAuth();
   const firebaseDataBase = getDatabase();
   const firebaseDataBaseReference = ref(firebaseDataBase, 'users/' + userId + '/' + dataSection);
-  const receivedFirebaseData = await getDataFromFirebase(userId, dataSection);
-  let factNotRepeat = true;
+  const receivedFirebaseData = await getData(userId, dataSection);
+  let notRepeated = true;
   for (const favoriteData in receivedFirebaseData) {
     if (receivedFirebaseData[favoriteData].id === itemData.id) {
-      factNotRepeat = false;
+      notRepeated = false;
     }
   }
-  if (factNotRepeat) {
+  if (notRepeated) {
     push(firebaseDataBaseReference, itemData);
   }
 }

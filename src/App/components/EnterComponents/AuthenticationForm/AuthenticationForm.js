@@ -5,7 +5,7 @@ import { setUser } from '@/App/Redux/store/slices/userSlice';
 import { useDispatch } from 'react-redux';
 import { useInputControl } from '@/App/components/EnterComponents/useInputControl/useInputControl';
 import { ValidationErrors } from '@components/EnterComponents/ValidationErrors/ValidationErrors';
-import { getDataFromFirebase } from '@components/firebaseFunctions/getDataFromFirebase/getDataFromFirebase';
+import { getData } from '@api-helpers/api-helpers';
 
 export function AuthenticationForm() {
   const [authenticationError, setAuthenticationError] = useState('');
@@ -20,7 +20,7 @@ export function AuthenticationForm() {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email.inputValue.trim(), password.inputValue.trim())
       .then(({ user }) => {
-        getDataFromFirebase(user.uid, 'username').then((userName) => {
+        getData(user.uid, 'username').then((userName) => {
           dispatch(
             setUser({
               email: user.email,

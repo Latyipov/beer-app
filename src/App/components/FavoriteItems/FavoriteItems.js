@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { removeDataFromFirebase } from '@components/firebaseFunctions/removeDataFromFirebase/removeDataFromFirebase';
-import { listenDataFromFirebase } from '@components/firebaseFunctions/listenDataFromFirebase/listenDataFromFirebase';
-import { stopListenDataFromFirebase } from '@components/firebaseFunctions/stopListenDataFromFirebase/stopListenDataFromFirebase';
+import { removeData, listenData, stopListenData } from '@api-helpers/api-helpers';
 import { useAuthentication } from '@/App/Redux/hooks/use-auth';
 import { TableItem } from '../TableItem/TableItem';
 import { TableList } from '@components/TableList/TableList';
@@ -13,15 +11,15 @@ import './FavoriteItems.scss';
 
 export function FavoriteItems() {
   const { userId } = useAuthentication();
-  const [favoriteListData, setFavoriteListData] = useState(null);
+  const [favoriteData, setFavoriteData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    listenDataFromFirebase(userId, 'favorite', setFavoriteListData, setError, setLoading);
+    listenData(userId, 'favorite', setFavoriteData, setError, setLoading);
     return () => {
-      setFavoriteListData(null);
-      stopListenDataFromFirebase(userId, 'favorite');
+      setFavoriteData(null);
+      stopListenData(userId, 'favorite');
     };
   }, []);
 
@@ -35,26 +33,16 @@ export function FavoriteItems() {
   return (
     <div className='favorite-item'>
       <TableList>
-        {favoriteListData &&
-          Object.entries(favoriteListData).map(([id, value]) => (
-            <TableItem
-              key={id}
-              itemName={value.name}
-              itemId={value.id}
-              itemDescription={value.itemDescription}
-              itemImgUrl={value.image_url}
-              actionItemButton={
-                <button
-                  className='table__button'
-                  onClick={() => removeDataFromFirebase(userId, 'favorite', id)}
-                >
-                  delete
-                </button>
-              }
-            />
+        {favoriteData &&
+          Object.entries(favoriteData).map(([id, value]) => (
+            <TableItem key={id} itemObject={value}>
+              <button className='table__button' onClick={() => removeData(userId, 'favorite', id)}>
+                delete
+              </button>
+            </TableItem>
           ))}
       </TableList>
-      {!favoriteListData && (
+      {!favoriteData && (
         <div className='favorite-item__empty'>
           <img src={EmptyMug} alt='empty-mug' className='favorite-item__empty-image' />
           <p className='favorite-item__empty-message'>

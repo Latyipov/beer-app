@@ -1,7 +1,7 @@
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-export async function listenDataFromFirebase(userId, dataSection, onSuccess, onError, onLoading) {
+export async function listenData(userId, dataSection, onSuccess, onError, onLoading) {
   try {
     await getAuth();
     const firebaseDataBase = await getDatabase();

@@ -1,4 +1,4 @@
-export async function requestAPI(requestData, onSuccess, onError, onLoading) {
+export async function getBeerData(requestData, onSuccess, onError, onLoading) {
   try {
     // we need this disable line because this const received from dotenv, but eslint find this like error
     // eslint-disable-next-line no-undef
@@ -13,7 +13,6 @@ export async function requestAPI(requestData, onSuccess, onError, onLoading) {
     const apiResultJSON = await apiResponse.json();
     onLoading(false);
     onSuccess(apiResultJSON);
-
     return undefined;
   } catch (error) {
     onLoading(false);
