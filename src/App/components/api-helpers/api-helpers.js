@@ -5,3 +5,5 @@ export { stopListenData } from '@api-helpers/stopListenData/stopListenData';
 export { pushData } from '@api-helpers/pushData/pushData';
 export { removeData } from '@api-helpers/removeData/removeData';
 export { getBeerData } from '@api-helpers/getBeerData/getBeerData';
+export { signIn } from '@api-helpers/signIn/signIn';
+export { signUp } from '@api-helpers/singUp/singUp';

@@ -15,15 +15,15 @@ export function App() {
   return (
     <div className='app-body'>
       <Routes>
-        <Route path='signin' element={<EnterPage />} />
-        <Route path='/main' element={isAuthorized ? <MainPage /> : <Navigate to='/signin' />} />
+        <Route path='enter' element={<EnterPage />} />
+        <Route path='/main' element={isAuthorized ? <MainPage /> : <Navigate to='/enter' />} />
         <Route
           path='all-beer'
-          element={isAuthorized ? <AllItemsPage /> : <Navigate to='/signin' />}
+          element={isAuthorized ? <AllItemsPage /> : <Navigate to='/enter' />}
         />
         <Route
           path='favorites'
-          element={isAuthorized ? <FavoriteItemsPage /> : <Navigate to='/signin' />}
+          element={isAuthorized ? <FavoriteItemsPage /> : <Navigate to='/enter' />}
         />
         <Route path='/' element={<Navigate to='/main' />} />
         <Route path='*' element={<NotFoundPage />} />

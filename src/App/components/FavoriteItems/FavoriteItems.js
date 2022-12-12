@@ -32,16 +32,17 @@ export function FavoriteItems() {
 
   return (
     <div className='favorite-item'>
-      <TableList>
-        {favoriteData &&
-          Object.entries(favoriteData).map(([id, value]) => (
+      {favoriteData && (
+        <TableList>
+          {Object.entries(favoriteData).map(([id, value]) => (
             <TableItem key={id} itemObject={value}>
               <button className='table__button' onClick={() => removeData(userId, 'favorite', id)}>
                 delete
               </button>
             </TableItem>
           ))}
-      </TableList>
+        </TableList>
+      )}
       {!favoriteData && (
         <div className='favorite-item__empty'>
           <img src={EmptyMug} alt='empty-mug' className='favorite-item__empty-image' />

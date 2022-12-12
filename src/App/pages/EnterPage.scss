@@ -1,4 +1,4 @@
-@import '../globalStyles/globalStyles.scss';
+@import '../__globalStyles/__globalStyles.scss';
 
 .enter-page {
   @include flex(column, nowrap, center, flex-start);
@@ -13,5 +13,80 @@
     padding: 2rem;
     border-top-left-radius: 17rem;
     border-top-right-radius: 17rem;
+  }
+  &__body {
+    width: 50%;
+    min-width: 380px;
+    max-width: 600px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: $light-background;
+    border: 1px solid #472212ed;
+    border-radius: 7px;
+  }
+  &__tabs {
+    @include flex(row, nowrap);
+    width: 100%;
+  }
+  &__tab-button {
+    @include text(15px);
+    padding: 15px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    border-bottom: 1px solid #472212ed;
+    background: #fff4e0;
+    -webkit-box-shadow: inset 0px -25px 34px -19px rgba(71, 34, 18, 0.19);
+    -moz-box-shadow: inset 0px -25px 34px -19px rgba(71, 34, 18, 0.19);
+    box-shadow: inset 0px -25px 34px -19px rgba(71, 34, 18, 0.19);
+
+    &:first-child {
+      border-radius: 7px 0 0 0;
+    }
+    &:last-child {
+      border-radius: 0 7px 0 0;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid #472212ed;
+    }
+    &:active {
+      background: #f8e1b4;
+    }
+
+    &--active {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      cursor: default;
+      background: #fff4e0;
+      border-bottom: none;
+    }
+  }
+}
+.enter-form {
+  @include flex(column, nowrap);
+  padding: 40px;
+
+  &__head {
+    @include text(30px);
+  }
+  &__input {
+    @include text(15px);
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px 20px;
+  }
+  &__form-box {
+    @include flex(column);
+  }
+  &__button {
+    @include button;
+    padding: 10px 15px;
+  }
+  &__error {
+    margin: 10px;
+    @include text(20px, red);
   }
 }

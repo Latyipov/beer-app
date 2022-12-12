@@ -1,4 +1,5 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
 require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -24,6 +25,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
       '@components': path.resolve(__dirname, 'src/App/components'),
       '@api-helpers': path.resolve(__dirname, 'src/App/components/api-helpers'),
+      '@globalStyles': path.resolve(__dirname, 'src/App/__globalStyles'),
     },
   },
   devtool: isDev ? 'eval-cheap-module-source-map' : 'source-map',
