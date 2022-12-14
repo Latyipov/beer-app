@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Background.scss';
 
 export function Background({ backgroundImageLink }) {
@@ -8,3 +9,7 @@ export function Background({ backgroundImageLink }) {
     </div>
   );
 }
+
+Background.propTypes = {
+  backgroundImageLink: PropTypes.string.isRequired,
+};

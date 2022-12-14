@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Table.scss';
 
 export function TableList({ children }) {
@@ -17,3 +18,7 @@ export function TableList({ children }) {
     </table>
   );
 }
+
+TableList.propTypes = {
+  children: PropTypes.array.isRequired,
+};

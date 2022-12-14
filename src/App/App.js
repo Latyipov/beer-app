@@ -14,20 +14,22 @@ export function App() {
 
   return (
     <div className='app-body'>
-      <Routes>
-        <Route path='enter' element={<EnterPage />} />
-        <Route path='/main' element={isAuthorized ? <MainPage /> : <Navigate to='/enter' />} />
-        <Route
-          path='all-beer'
-          element={isAuthorized ? <AllItemsPage /> : <Navigate to='/enter' />}
-        />
-        <Route
-          path='favorites'
-          element={isAuthorized ? <FavoriteItemsPage /> : <Navigate to='/enter' />}
-        />
-        <Route path='/' element={<Navigate to='/main' />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
+      <React.StrictMode>
+        <Routes>
+          <Route path='enter' element={<EnterPage />} />
+          <Route path='/main' element={isAuthorized ? <MainPage /> : <Navigate to='/enter' />} />
+          <Route
+            path='all-beer'
+            element={isAuthorized ? <AllItemsPage /> : <Navigate to='/enter' />}
+          />
+          <Route
+            path='favorites'
+            element={isAuthorized ? <FavoriteItemsPage /> : <Navigate to='/enter' />}
+          />
+          <Route path='/' element={<Navigate to='/main' />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </React.StrictMode>
     </div>
   );
 }

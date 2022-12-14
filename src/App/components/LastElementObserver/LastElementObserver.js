@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import './LastElementObserver.scss';
 
 export function LastElementObserver({ setNextPageData }) {
@@ -20,3 +21,7 @@ export function LastElementObserver({ setNextPageData }) {
 
   return <div ref={lastElement} className='intersec'></div>;
 }
+
+LastElementObserver.propTypes = {
+  setNextPageData: PropTypes.func.isRequired,
+};

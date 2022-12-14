@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import './BurgerButton.scss';
 
 export function BurgerButton({ isBurgerOpen, setIsBurgerOpen }) {
@@ -14,3 +14,8 @@ export function BurgerButton({ isBurgerOpen, setIsBurgerOpen }) {
     </button>
   );
 }
+
+BurgerButton.propTypes = {
+  isBurgerOpen: PropTypes.bool.isRequired,
+  setIsBurgerOpen: PropTypes.func.isRequired,
+};

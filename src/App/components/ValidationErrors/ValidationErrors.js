@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ValidationErrors.scss';
 
 export function ValidationErrors({ isInputSelected, validationResult }) {
@@ -18,3 +19,8 @@ export function ValidationErrors({ isInputSelected, validationResult }) {
     </ul>
   );
 }
+
+ValidationErrors.propTypes = {
+  isInputSelected: PropTypes.bool.isRequired,
+  validationResult: PropTypes.object.isRequired,
+};

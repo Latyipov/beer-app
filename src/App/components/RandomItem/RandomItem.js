@@ -47,14 +47,15 @@ export function RandomItem() {
       <button className='random-item__button' onClick={() => setOnRefreshButton(!onRefreshButton)}>
         Show one more random beer
       </button>
-      <TableList>
-        {!!randomItem &&
-          randomItem.map((itemObject) => (
+      {!!randomItem && (
+        <TableList>
+          {randomItem.map((itemObject) => (
             <TableItem key={itemObject.id} itemObject={itemObject}>
               <AddToFavoriteButton checkingData={favoriteData} itemObject={itemObject} />
             </TableItem>
           ))}
-      </TableList>
+        </TableList>
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, useLocation, matchPath } from 'react-router-dom';
 import './Navigation.scss';
 
@@ -47,3 +48,7 @@ export function Navigation({ isBurgerOpen }) {
     </nav>
   );
 }
+
+Navigation.propTypes = {
+  isBurgerOpen: PropTypes.bool.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useAuthentication } from '@/App/Redux/hooks/use-auth';
 import { pushData } from '@api-helpers/api-helpers';
 
@@ -32,3 +33,8 @@ export function AddToFavoriteButton({ checkingData, itemObject }) {
     </button>
   );
 }
+
+AddToFavoriteButton.propTypes = {
+  checkingData: PropTypes.object,
+  itemObject: PropTypes.object.isRequired,
+};

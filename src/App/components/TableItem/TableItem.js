@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export function TableItem({ children, itemObject }) {
   if (itemObject) {
@@ -20,3 +21,8 @@ export function TableItem({ children, itemObject }) {
   }
   return null;
 }
+
+TableItem.propTypes = {
+  children: PropTypes.element.isRequired,
+  itemObject: PropTypes.object.isRequired,
+};
