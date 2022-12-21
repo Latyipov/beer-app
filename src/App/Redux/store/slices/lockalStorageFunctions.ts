@@ -24,9 +24,17 @@ export const loadStateToLocalStorage = () => {
     };
   }
 };
-export const saveStateToLocalStorage = (state) => {
-  localStorage.setItem('email', state.email);
-  localStorage.setItem('name', state.name);
-  localStorage.setItem('token', state.token);
-  localStorage.setItem('id', state.id);
+
+type SliceState = {
+  email: string | null;
+  name: string | null;
+  token: string | null;
+  id: string | null;
+};
+
+export const saveStateToLocalStorage = (state: SliceState) => {
+  !!state.email && localStorage.setItem('email', state.email);
+  !!state.name && localStorage.setItem('name', state.name);
+  !!state.token && localStorage.setItem('token', state.token);
+  !!state.id && localStorage.setItem('id', state.id);
 };

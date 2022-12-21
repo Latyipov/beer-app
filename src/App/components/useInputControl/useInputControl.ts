@@ -1,10 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 
-const validationCheck = (inputValue, validations) => {
-  const [inputEmptyError, setInputEmptyError] = useState('');
-  const [minLengthError, setMinLengthError] = useState('');
-  const [emailValidationError, setIsEmailValidationError] = useState('');
-  const [isInputValid, setIsInputValid] = useState('');
+type ValidationParameters = {
+  isInputEmpty: boolean;
+  minLength: number;
+  isEmailValid?: boolean;
+};
+
+const validationCheck = (inputValue: string, validations: ValidationParameters) => {
+  const [inputEmptyError, setInputEmptyError] = useState<null | string>(null);
+  const [minLengthError, setMinLengthError] = useState<null | string>(null);
+  const [emailValidationError, setIsEmailValidationError] = useState<null | string>(null);
+  const [isInputValid, setIsInputValid] = useState<boolean>(false);
   const emailRegexValidation =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   useEffect(() => {
@@ -13,22 +19,22 @@ const validationCheck = (inputValue, validations) => {
         case 'minLength':
           inputValue.length < validations[validation]
             ? setMinLengthError('must be more than ' + validations[validation] + ' character')
-            : setMinLengthError('');
+            : setMinLengthError(null);
           break;
         case 'isInputEmpty':
-          !inputValue ? setInputEmptyError("input can't be empty") : setInputEmptyError('');
+          !inputValue ? setInputEmptyError("input can't be empty") : setInputEmptyError(null);
           break;
         case 'isEmailValid':
           !emailRegexValidation.test(String(inputValue).toLowerCase())
             ? setIsEmailValidationError('email not correct ')
-            : setIsEmailValidationError('');
+            : setIsEmailValidationError(null);
           break;
       }
     }
   }, [inputValue]);
 
   useEffect(() => {
-    if (inputEmptyError || minLengthError || emailValidationError) {
+    if (!!inputEmptyError || !!minLengthError || !!emailValidationError) {
       setIsInputValid(false);
     } else {
       setIsInputValid(true);
@@ -43,19 +49,20 @@ const validationCheck = (inputValue, validations) => {
   };
 };
 
-const useInputControl = (initialValue, validations) => {
+const useInputControl = (initialValue: string, validations: ValidationParameters) => {
   const [inputValue, setInputValue] = useState(initialValue);
+  const [isInputSelected, setIsInputSelected] = useState(false);
 
-  const [isInputSelected, setIsInputSelectedy] = useState(false);
   const onBlur = () => {
-    setIsInputSelectedy(true);
+    setIsInputSelected(true);
   };
 
-  const onChange = (event) => {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value.trim());
   };
 
   const validationResult = validationCheck(inputValue, validations);
+
   return {
     inputValue,
     onChange,

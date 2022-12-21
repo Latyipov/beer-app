@@ -2,7 +2,7 @@
   "name": "beer-app",
   "version": "1.0.0",
   "description": "authorization",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "npm run clean && cross-env NODE_ENV=production URL_PATH='beer-app/' webpack --mode production",
@@ -41,7 +41,10 @@
     "rimraf": "^3.0.2",
     "sass": "^1.55.0",
     "sass-loader": "^13.0.2",
+    "source-map-loader": "^4.0.1",
     "style-loader": "^3.3.1",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.4",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
@@ -53,11 +56,13 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.12",
     "@reduxjs/toolkit": "^1.7.2",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
     "firebase": "^9.6.7",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.4.5"
   }
 }

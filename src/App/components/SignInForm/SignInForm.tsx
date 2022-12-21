@@ -1,52 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useInputControl } from '@/App/components/useInputControl/useInputControl';
 import { ValidationErrors } from '@/App/components/ValidationErrors/ValidationErrors';
+import { signIn } from '@api-helpers/api-helpers';
 import { SmallLoading } from '../SmallLoading/SmallLoading';
-import { signUp } from '@api-helpers/api-helpers';
 
-export function Registration() {
-  const [registrationError, setRegistrationError] = useState(null);
-  const [smallLoading, setSmallLoading] = useState(false);
-  const userName = useInputControl('', { isInputEmpty: true, minLength: 3 });
-  const email = useInputControl('', { isInputEmpty: true, minLength: 5, isEmailValid: true });
-  const password = useInputControl('', { isInputEmpty: true, minLength: 6 });
+export function SignInForm() {
+  const [signInError, setSignInError] = useState<string | null>(null);
+  const [smallLoading, setSmallLoading] = useState<boolean>(false);
 
+  const email = useInputControl('', { isInputEmpty: true, minLength: 3, isEmailValid: true });
+  const password = useInputControl('', { isInputEmpty: true, minLength: 5 });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onFormSubmitClick = (event) => {
+  const onFormSubmitClick = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
-    setRegistrationError(null);
+    setSignInError(null);
     setSmallLoading(true);
-    signUp(
-      userName.inputValue.trim(),
+    signIn(
       email.inputValue.trim(),
       password.inputValue.trim(),
       { dispatch, navigate },
-      setRegistrationError,
+      setSignInError,
       setSmallLoading,
     );
+    return undefined;
   };
 
   return (
     <div className='enter-form'>
-      <h2 className='enter-form__head'>Registration form</h2>
+      <h2 className='enter-form__head'>Sign In form</h2>
       <form className='enter-form__form-box'>
-        <ValidationErrors
-          isInputSelected={userName.isInputSelected}
-          validationResult={userName.validationResult}
-        />
-        <input
-          className='enter-form__input'
-          type='text'
-          name='UserName'
-          placeholder='Name'
-          value={userName.inputValue}
-          onBlur={userName.onBlur}
-          onChange={userName.onChange}
-        />
         <ValidationErrors
           isInputSelected={email.isInputSelected}
           validationResult={email.validationResult}
@@ -74,7 +60,7 @@ export function Registration() {
           onBlur={password.onBlur}
           onChange={password.onChange}
         />
-        {registrationError && <div className='enter-form__error'>{registrationError}</div>}
+        {!!signInError && <div className='enter-form__error'>{signInError}</div>}
         {smallLoading ? (
           <SmallLoading />
         ) : (
@@ -86,7 +72,7 @@ export function Registration() {
             type='submit'
             onClick={onFormSubmitClick}
           >
-            Sign up
+            Sign in
           </button>
         )}
       </form>

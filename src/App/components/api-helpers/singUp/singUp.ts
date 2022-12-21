@@ -1,8 +1,21 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import firebase from 'firebase/compat/app';
 import { setUser } from '@/App/Redux/store/slices/userSlice';
 import { createNewUser } from '@api-helpers/api-helpers';
 
-export async function signUp(userName, email, password, onSuccess, onError, onLoad) {
+type dispatchParameters = (action: Function) => void;
+
+const signUp = async (
+  userName: string,
+  email: string,
+  password: string,
+  onSuccess: {
+    dispatch: dispatchParameters;
+    navigate: Function;
+  },
+  onError: (error: string) => void,
+  isLoading: (arg: boolean) => void,
+) => {
   try {
     const { user } = await createUserWithEmailAndPassword(getAuth(), email, password);
 
@@ -15,11 +28,11 @@ export async function signUp(userName, email, password, onSuccess, onError, onLo
       }),
     );
     await createNewUser(user.uid, user.email, userName);
-    onLoad(false);
+    isLoading(false);
     onSuccess.navigate('/');
     return undefined;
-  } catch (error) {
-    await onLoad(false);
+  } catch (error: firebase.FirebaseError) {
+    await isLoading(false);
     switch (error.code) {
       case 'auth/email-already-in-use':
         onError('User with this email already exists.');
@@ -37,4 +50,6 @@ export async function signUp(userName, email, password, onSuccess, onError, onLo
         onError("Can't register. Something wrong.");
     }
   }
-}
+};
+
+export { signUp };

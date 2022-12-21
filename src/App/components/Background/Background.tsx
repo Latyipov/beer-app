@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import './Background.scss';
 
-export function Background({ backgroundImageLink }) {
+type BackgroundProps = {
+  backgroundImageLink: string;
+};
+
+const Background: FC<BackgroundProps> = ({ backgroundImageLink }) => {
   return (
     <div className='background' style={{ backgroundImage: `url(${backgroundImageLink})` }}>
       <div className='background__blur'></div>
     </div>
   );
-}
-
-Background.propTypes = {
-  backgroundImageLink: PropTypes.string.isRequired,
 };
+export { Background };

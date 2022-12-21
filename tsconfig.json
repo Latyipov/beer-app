@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "es6", "dom"],
+    "outDir": "./dist/", // path to output directory
+    "sourceMap": true, // allow sourcemap support
+    "strict": true,
+    "strictNullChecks": true, // enable strict null checks as a best practice
+    "module": "es6", // specify module code generation
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react", // use typescript to transpile jsx to js
+    "target": "es5", // specify ECMAScript target version
+    "allowJs": true, // allow a partial TypeScript and JavaScript codebase
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+      "@pages/*": ["App/pages/*"],
+      "@components/*": ["App/components/*"],
+      "@api-helpers/*": ["App/components/api-helpers/*"]
+    }
+  },
+  "include": ["./src/"]
+}
