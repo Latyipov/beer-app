@@ -1,5 +1,4 @@
 const path = require('path');
-const glob = require('glob');
 const webpack = require('webpack');
 require('dotenv').config();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -11,7 +10,7 @@ module.exports = {
   target: 'web',
   mode: isDev ? 'development' : 'production',
   entry: {
-    app: path.resolve(__dirname, 'src/index.js'),
+    app: path.resolve(__dirname, 'src/index.tsx'),
   },
   output: {
     publicPath: isDev ? '/' : '/' + process.env.URL_PATH || '',
@@ -21,14 +20,15 @@ module.exports = {
     clean: true,
   },
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@pages': path.resolve(__dirname, 'src/App/pages'),
       '@components': path.resolve(__dirname, 'src/App/components'),
-      '@api-helpers': path.resolve(__dirname, 'src/App/components/api-helpers'),
-      '@globalStyles': path.resolve(__dirname, 'src/App/__globalStyles'),
+      '@api-helpers': path.resolve(__dirname, 'src/App/apiHelpers'),
     },
   },
-  devtool: isDev ? 'eval-cheap-module-source-map' : 'source-map',
+  devtool: isDev ? 'source-map' : 'source-map',
   module: {
     rules: [
       {
@@ -39,13 +39,11 @@ module.exports = {
         test: /\.(scss|css)$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      {
-        test: /\.(js)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
+      { test: /\.(t|j)sx?$/, use: { loader: 'ts-loader' }, exclude: /node_modules/ },
+      { enforce: 'pre', test: /\.js$/, exclude: /node_modules/, loader: 'source-map-loader' },
     ],
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
