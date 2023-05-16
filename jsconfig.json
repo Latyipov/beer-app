@@ -6,7 +6,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/App/components/*"],
-      "@api-helpers/*": ["src/App/components/api-helpers/*"]
+      "@api-helpers/*": ["src/App/apiHelpers/*"]
     }
   },
   "exclude": ["node_modules", "dist", "build", "husky"]

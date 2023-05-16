@@ -25,7 +25,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
       '@pages': path.resolve(__dirname, 'src/App/pages'),
       '@components': path.resolve(__dirname, 'src/App/components'),
-      '@api-helpers': path.resolve(__dirname, 'src/App/components/api-helpers'),
+      '@api-helpers': path.resolve(__dirname, 'src/App/apiHelpers'),
     },
   },
   devtool: isDev ? 'source-map' : 'source-map',
@@ -43,10 +43,6 @@ module.exports = {
       { enforce: 'pre', test: /\.js$/, exclude: /node_modules/, loader: 'source-map-loader' },
     ],
   },
-  // externals: {
-  //   react: 'React',
-  //   'react-dom': 'ReactDOM',
-  // },
 
   plugins: [
     new HtmlWebpackPlugin({

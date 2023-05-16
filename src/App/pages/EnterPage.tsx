@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { SignInForm } from '@/App/components/SignInForm/SignInForm';
 import { SignUpForm } from '@/App/components/SignUpForm/SignUpForm';
 import { Background } from '@components/Background/Background';
 import backgroundImageLink from '@/App/images/background-wallpaper.jpg';
 import './EnterPage.scss';
 
-export function EnterPage() {
+export const EnterPage: FC = () => {
   const [activeTab, setActiveTab] = useState<string>('signIn');
-
   return (
     <div className='enter-page'>
       <Background backgroundImageLink={backgroundImageLink} />
@@ -36,4 +35,4 @@ export function EnterPage() {
       </div>
     </div>
   );
-}
+};

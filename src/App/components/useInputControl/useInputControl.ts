@@ -31,6 +31,7 @@ const validationCheck = (inputValue: string, validations: ValidationParameters) 
           break;
       }
     }
+    return () => undefined;
   }, [inputValue]);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ const validationCheck = (inputValue: string, validations: ValidationParameters) 
     } else {
       setIsInputValid(true);
     }
+    return () => undefined;
   }, [inputEmptyError, minLengthError, emailValidationError]);
 
   return {

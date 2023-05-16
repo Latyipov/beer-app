@@ -1,31 +1,28 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useInputControl } from '@/App/components/useInputControl/useInputControl';
 import { ValidationErrors } from '@/App/components/ValidationErrors/ValidationErrors';
 import { signIn } from '@api-helpers/api-helpers';
-import { SmallLoading } from '../SmallLoading/SmallLoading';
+import { SmallLoading } from '@components/SmallLoading/SmallLoading';
 
-export function SignInForm() {
+export const SignInForm: FC = () => {
   const [signInError, setSignInError] = useState<string | null>(null);
-  const [smallLoading, setSmallLoading] = useState<boolean>(false);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   const email = useInputControl('', { isInputEmpty: true, minLength: 3, isEmailValid: true });
   const password = useInputControl('', { isInputEmpty: true, minLength: 5 });
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const onFormSubmitClick = (event: MouseEvent<HTMLButtonElement>): void => {
+  const onFormSubmitClick = async (event: MouseEvent<HTMLButtonElement>): Promise<undefined> => {
     event.preventDefault();
     setSignInError(null);
-    setSmallLoading(true);
-    signIn(
-      email.inputValue.trim(),
-      password.inputValue.trim(),
-      { dispatch, navigate },
-      setSignInError,
-      setSmallLoading,
-    );
+    setLoading(true);
+    const signInReply = await signIn(email.inputValue.trim(), password.inputValue.trim());
+    if (!signInReply.isError) {
+      navigate('/');
+    } else {
+      setSignInError(signInReply.isError);
+    }
+    setLoading(false);
     return undefined;
   };
 
@@ -33,10 +30,7 @@ export function SignInForm() {
     <div className='enter-form'>
       <h2 className='enter-form__head'>Sign In form</h2>
       <form className='enter-form__form-box'>
-        <ValidationErrors
-          isInputSelected={email.isInputSelected}
-          validationResult={email.validationResult}
-        />
+        {email.isInputSelected && <ValidationErrors validationResult={email.validationResult} />}
         <input
           className='enter-form__input'
           type='email'
@@ -47,10 +41,9 @@ export function SignInForm() {
           onChange={email.onChange}
         />
 
-        <ValidationErrors
-          isInputSelected={password.isInputSelected}
-          validationResult={password.validationResult}
-        />
+        {password.isInputSelected && (
+          <ValidationErrors validationResult={password.validationResult} />
+        )}
         <input
           className='enter-form__input'
           type='password'
@@ -60,8 +53,9 @@ export function SignInForm() {
           onBlur={password.onBlur}
           onChange={password.onChange}
         />
+
         {!!signInError && <div className='enter-form__error'>{signInError}</div>}
-        {smallLoading ? (
+        {loading ? (
           <SmallLoading />
         ) : (
           <button
@@ -78,4 +72,4 @@ export function SignInForm() {
       </form>
     </div>
   );
-}
+};

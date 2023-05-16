@@ -1,44 +1,42 @@
 import React, { useState, MouseEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useInputControl } from '@components/useInputControl/useInputControl';
 import { ValidationErrors } from '@components/ValidationErrors/ValidationErrors';
 import { SmallLoading } from '@components/SmallLoading/SmallLoading';
 import { signUp } from '@api-helpers/api-helpers';
+import { useNavigate } from 'react-router-dom';
 
-export function SignUpForm() {
+export const SignUpForm = () => {
   const [signUpError, setSignUpError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const userName = useInputControl('', { isInputEmpty: true, minLength: 3 });
   const email = useInputControl('', { isInputEmpty: true, minLength: 5, isEmailValid: true });
   const password = useInputControl('', { isInputEmpty: true, minLength: 6 });
-
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onFormSubmitClick = (event: MouseEvent<HTMLButtonElement>): void => {
+  const onFormSubmitClick = async (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setSignUpError(null);
-    setIsLoading(true);
-    signUp(
-      userName.inputValue.trim(),
-      email.inputValue.trim(),
-      password.inputValue.trim(),
-      { dispatch, navigate },
-      setSignUpError,
-      setIsLoading,
-    );
+    setLoading(true);
+    const signUpReply = await signUp({
+      userName: userName.inputValue.trim(),
+      email: email.inputValue.trim(),
+      password: password.inputValue.trim(),
+    });
+    if (!signUpReply.isError) {
+      navigate('/');
+    } else {
+      setSignUpError(signUpReply.isError);
+    }
+    setLoading(false);
     return undefined;
   };
-
   return (
     <div className='enter-form'>
       <h2 className='enter-form__head'>Sign Up form</h2>
       <form className='enter-form__form-box'>
-        <ValidationErrors
-          isInputSelected={userName.isInputSelected}
-          validationResult={userName.validationResult}
-        />
+        {userName.isInputSelected && (
+          <ValidationErrors validationResult={userName.validationResult} />
+        )}
         <input
           className='enter-form__input'
           type='text'
@@ -48,10 +46,7 @@ export function SignUpForm() {
           onBlur={userName.onBlur}
           onChange={userName.onChange}
         />
-        <ValidationErrors
-          isInputSelected={email.isInputSelected}
-          validationResult={email.validationResult}
-        />
+        {email.isInputSelected && <ValidationErrors validationResult={email.validationResult} />}
         <input
           className='enter-form__input'
           type='email'
@@ -61,11 +56,9 @@ export function SignUpForm() {
           onBlur={email.onBlur}
           onChange={email.onChange}
         />
-
-        <ValidationErrors
-          isInputSelected={password.isInputSelected}
-          validationResult={password.validationResult}
-        />
+        {password.isInputSelected && (
+          <ValidationErrors validationResult={password.validationResult} />
+        )}
         <input
           className='enter-form__input'
           type='password'
@@ -76,12 +69,14 @@ export function SignUpForm() {
           onChange={password.onChange}
         />
         {signUpError && <div className='enter-form__error'>{signUpError}</div>}
-        {isLoading ? (
+        {loading ? (
           <SmallLoading />
         ) : (
           <button
             disabled={
-              !email.validationResult.isInputValid || !password.validationResult.isInputValid
+              !email.validationResult.isInputValid ||
+              !password.validationResult.isInputValid ||
+              !userName.validationResult.isInputValid
             }
             className='enter-form__button'
             type='submit'
@@ -93,4 +88,4 @@ export function SignUpForm() {
       </form>
     </div>
   );
-}
+};

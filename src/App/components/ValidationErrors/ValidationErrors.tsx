@@ -1,22 +1,19 @@
 import React, { FC } from 'react';
 import './ValidationErrors.scss';
 
-type ValidationErrorsProps = {
-  isInputSelected: boolean;
-  validationResult: validationResultParameters;
-};
 type validationResultParameters = {
   inputEmptyError: string | null;
   minLengthError: string | null;
   emailValidationError: string | null;
   isInputValid: boolean;
 };
-
-const ValidationErrors: FC<ValidationErrorsProps> = ({ isInputSelected, validationResult }) => {
+type ValidationErrorsProps = {
+  validationResult: validationResultParameters;
+};
+const ValidationErrors: FC<ValidationErrorsProps> = ({ validationResult }) => {
   return (
     <ul className='error-list'>
-      {isInputSelected &&
-        !!validationResult &&
+      {!!validationResult &&
         Object.keys(validationResult).map(
           (errorKey: string) =>
             !!validationResult[errorKey as keyof validationResultParameters] &&
