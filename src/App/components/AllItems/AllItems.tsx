@@ -42,18 +42,22 @@ export function AllItems() {
     };
   }, []);
 
-  const setNextPageData = async () => {
+  const setNextPageData = () => {
+    setIsObserverActive(false);
     setSmallLoading(true);
-    const apiResponse = await getBeerData(
-      `beers?page=${currentAPIPage.current}&per_page=${portions}`,
-    );
-    if (!apiResponse.errorMessage && !!apiResponse.itemObject) {
-      setСhunkData(apiResponse.itemObject);
-    } else {
-      setError(apiResponse.errorMessage);
-    }
-    setSmallLoading(false);
-    currentAPIPage.current++;
+    getBeerData(`beers?page=${currentAPIPage.current}&per_page=${portions}`)
+      .then((apiResponse) => {
+        if (!apiResponse.errorMessage && !!apiResponse.itemObject) {
+          setСhunkData(apiResponse.itemObject);
+        } else {
+          setError(apiResponse.errorMessage);
+        }
+      })
+      .finally(() => {
+        setSmallLoading(false);
+        currentAPIPage.current++;
+        setIsObserverActive(true);
+      });
   };
 
   if (loading) {
@@ -67,7 +71,7 @@ export function AllItems() {
   return (
     <div className='all-items'>
       <TableList>
-        {collectedData &&
+        {!!collectedData &&
           collectedData.map((itemObject) => (
             <TableItem key={itemObject.id} itemObject={itemObject}>
               <AddToFavoriteButton checkingData={favoriteData} itemObject={itemObject} />
