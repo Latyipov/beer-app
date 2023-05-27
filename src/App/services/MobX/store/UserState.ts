@@ -19,11 +19,8 @@ class UserState {
     makeAutoObservable(this);
     if (
       localStorage.email !== undefined &&
-      localStorage.email !== 'null' &&
       localStorage.name !== undefined &&
-      localStorage.name !== 'null' &&
-      localStorage.id !== undefined &&
-      localStorage.id !== 'null'
+      localStorage.id !== undefined
     ) {
       this.userStateData.isSignIn = true;
       this.userStateData.email = localStorage.getItem('email');
