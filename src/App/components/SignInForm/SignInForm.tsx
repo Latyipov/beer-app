@@ -4,6 +4,7 @@ import { useInputControl } from '@/App/components/useInputControl/useInputContro
 import { ValidationErrors } from '@/App/components/ValidationErrors/ValidationErrors';
 import { signIn } from '@api-helpers/api-helpers';
 import { SmallLoading } from '@components/SmallLoading/SmallLoading';
+import { GoogleAuth } from '@api-helpers/googleAuth/googleAuth';
 
 export const SignInForm: FC = () => {
   const [signInError, setSignInError] = useState<string | null>(null);
@@ -21,6 +22,19 @@ export const SignInForm: FC = () => {
       navigate('/');
     } else {
       setSignInError(signInReply.isError);
+    }
+    setLoading(false);
+    return undefined;
+  };
+  const onGoogleButtonClick = async (event: MouseEvent<HTMLButtonElement>): Promise<undefined> => {
+    event.preventDefault();
+    setSignInError(null);
+    const GoogleAuthReply = await GoogleAuth();
+    console.log(GoogleAuthReply, 'AHU!!!');
+    if (!GoogleAuthReply.isError) {
+      navigate('/');
+    } else {
+      setSignInError(GoogleAuthReply.isError);
     }
     setLoading(false);
     return undefined;
@@ -70,6 +84,9 @@ export const SignInForm: FC = () => {
           </button>
         )}
       </form>
+      <button style={{ margin: '20px' }} onClick={onGoogleButtonClick}>
+        enter with google
+      </button>
     </div>
   );
 };
