@@ -1,42 +1,28 @@
 import React, { useState, MouseEvent, FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useInputControl } from '@/App/components/useInputControl/useInputControl';
 import { ValidationErrors } from '@/App/components/ValidationErrors/ValidationErrors';
 import { signIn } from '@api-helpers/api-helpers';
 import { SmallLoading } from '@components/SmallLoading/SmallLoading';
-import { GoogleAuth } from '@api-helpers/googleAuth/googleAuth';
 
 export const SignInForm: FC = () => {
   const [signInError, setSignInError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const navigate = useNavigate();
   const email = useInputControl('', { isInputEmpty: true, minLength: 3, isEmailValid: true });
   const password = useInputControl('', { isInputEmpty: true, minLength: 5 });
 
-  const onFormSubmitClick = async (event: MouseEvent<HTMLButtonElement>): Promise<undefined> => {
+  const onFormSubmitClick = (event: MouseEvent<HTMLButtonElement>): undefined => {
     event.preventDefault();
     setSignInError(null);
     setLoading(true);
-    const signInReply = await signIn(email.inputValue.trim(), password.inputValue.trim());
-    if (!signInReply.isError) {
-      navigate('/');
-    } else {
-      setSignInError(signInReply.isError);
-    }
-    setLoading(false);
-    return undefined;
-  };
-  const onGoogleButtonClick = async (event: MouseEvent<HTMLButtonElement>): Promise<undefined> => {
-    event.preventDefault();
-    setSignInError(null);
-    const GoogleAuthReply = await GoogleAuth();
-    console.log(GoogleAuthReply, 'AHU!!!');
-    if (!GoogleAuthReply.isError) {
-      navigate('/');
-    } else {
-      setSignInError(GoogleAuthReply.isError);
-    }
-    setLoading(false);
+    signIn({
+      email: email.inputValue.trim(),
+      password: password.inputValue.trim(),
+    }).then((response) => {
+      if (response.isError) {
+        setSignInError(response.isError);
+        setLoading(false);
+      }
+    });
     return undefined;
   };
 
@@ -84,9 +70,6 @@ export const SignInForm: FC = () => {
           </button>
         )}
       </form>
-      <button style={{ margin: '20px' }} onClick={onGoogleButtonClick}>
-        enter with google
-      </button>
     </div>
   );
 };

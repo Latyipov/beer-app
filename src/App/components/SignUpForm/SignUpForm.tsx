@@ -3,7 +3,6 @@ import { useInputControl } from '@components/useInputControl/useInputControl';
 import { ValidationErrors } from '@components/ValidationErrors/ValidationErrors';
 import { SmallLoading } from '@components/SmallLoading/SmallLoading';
 import { signUp } from '@api-helpers/api-helpers';
-import { useNavigate } from 'react-router-dom';
 
 export const SignUpForm = () => {
   const [signUpError, setSignUpError] = useState<string | null>(null);
@@ -11,23 +10,21 @@ export const SignUpForm = () => {
   const userName = useInputControl('', { isInputEmpty: true, minLength: 3 });
   const email = useInputControl('', { isInputEmpty: true, minLength: 5, isEmailValid: true });
   const password = useInputControl('', { isInputEmpty: true, minLength: 6 });
-  const navigate = useNavigate();
 
-  const onFormSubmitClick = async (event: MouseEvent<HTMLButtonElement>) => {
+  const onFormSubmitClick = (event: MouseEvent<HTMLButtonElement>): undefined => {
     event.preventDefault();
     setSignUpError(null);
     setLoading(true);
-    const signUpReply = await signUp({
+    signUp({
       userName: userName.inputValue.trim(),
       email: email.inputValue.trim(),
       password: password.inputValue.trim(),
+    }).then((response) => {
+      if (response.isError) {
+        setSignUpError(response.isError);
+        setLoading(false);
+      }
     });
-    if (!signUpReply.isError) {
-      navigate('/');
-    } else {
-      setSignUpError(signUpReply.isError);
-    }
-    setLoading(false);
     return undefined;
   };
   return (
