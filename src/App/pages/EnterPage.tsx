@@ -2,6 +2,7 @@ import React, { useState, FC } from 'react';
 import { SignInForm } from '@/App/components/SignInForm/SignInForm';
 import { SignUpForm } from '@/App/components/SignUpForm/SignUpForm';
 import { Background } from '@components/Background/Background';
+import { ServiceButtons } from '@components/ServiceButtons/ServiceButtons';
 import backgroundImageLink from '@/App/images/background-wallpaper.jpg';
 import './EnterPage.scss';
 
@@ -32,6 +33,7 @@ export const EnterPage: FC = () => {
         </div>
         {activeTab === 'signIn' && <SignInForm />}
         {activeTab === 'signUp' && <SignUpForm />}
+        <ServiceButtons />
       </div>
     </div>
   );

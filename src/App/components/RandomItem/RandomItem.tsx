@@ -25,15 +25,19 @@ export function RandomItem() {
     };
   }, []);
 
-  const refreshItem = async () => {
+  const refreshItem = (): undefined => {
     setLoading(true);
-    const apiResponse = await getBeerData('beers/random');
-    if (!apiResponse.errorMessage && !!apiResponse.itemObject) {
-      setRandomItem(apiResponse.itemObject);
-    } else {
-      setError(apiResponse.errorMessage);
-    }
-    setLoading(false);
+    getBeerData('beers/random')
+      .then((response) => {
+        if (!response.errorMessage && !!response.itemObject) {
+          setRandomItem(response.itemObject);
+        } else {
+          setError(response.errorMessage);
+        }
+      })
+      .finally(() => setLoading(false));
+
+    return undefined;
   };
 
   if (loading) {

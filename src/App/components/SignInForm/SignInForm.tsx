@@ -1,5 +1,4 @@
 import React, { useState, MouseEvent, FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useInputControl } from '@/App/components/useInputControl/useInputControl';
 import { ValidationErrors } from '@/App/components/ValidationErrors/ValidationErrors';
 import { signIn } from '@api-helpers/api-helpers';
@@ -8,21 +7,22 @@ import { SmallLoading } from '@components/SmallLoading/SmallLoading';
 export const SignInForm: FC = () => {
   const [signInError, setSignInError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const navigate = useNavigate();
   const email = useInputControl('', { isInputEmpty: true, minLength: 3, isEmailValid: true });
   const password = useInputControl('', { isInputEmpty: true, minLength: 5 });
 
-  const onFormSubmitClick = async (event: MouseEvent<HTMLButtonElement>): Promise<undefined> => {
+  const onFormSubmitClick = (event: MouseEvent<HTMLButtonElement>): undefined => {
     event.preventDefault();
     setSignInError(null);
     setLoading(true);
-    const signInReply = await signIn(email.inputValue.trim(), password.inputValue.trim());
-    if (!signInReply.isError) {
-      navigate('/');
-    } else {
-      setSignInError(signInReply.isError);
-    }
-    setLoading(false);
+    signIn({
+      email: email.inputValue.trim(),
+      password: password.inputValue.trim(),
+    }).then((response) => {
+      if (response.isError) {
+        setSignInError(response.isError);
+        setLoading(false);
+      }
+    });
     return undefined;
   };
 

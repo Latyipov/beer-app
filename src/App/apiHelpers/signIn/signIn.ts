@@ -2,7 +2,8 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getData } from '@api-helpers/api-helpers';
 import UserState from '@/App/services/MobX/store/UserState';
 
-export async function signIn(email: string, password: string) {
+type SignInParams = { email: string; password: string };
+export async function signIn({ email, password }: SignInParams) {
   try {
     const { user } = await signInWithEmailAndPassword(getAuth(), email, password);
     const userName: string = await getData(user.uid, 'username');
