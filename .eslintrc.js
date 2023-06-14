@@ -26,7 +26,6 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    'react/prop-types': 0,
     'react/jsx-uses-vars': 'error',
     'react/jsx-uses-react': 'error',
     'no-console': 'error',
