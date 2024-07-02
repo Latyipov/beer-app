@@ -8,3 +8,4 @@ export { getBeerData } from '@api-helpers/getBeerData/getBeerData';
 export { signIn } from '@api-helpers/signIn/signIn';
 export { signUp } from '@api-helpers/signUp/signUp';
 export { googleAuth } from '@api-helpers/googleAuth/googleAuth';
+export { githubAuth } from '@api-helpers/githubAuth/githubAuth';
