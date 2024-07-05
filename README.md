@@ -7,7 +7,7 @@ For correct build via Webpack you must have:
 
 This app allows users to register and log in, shows random beer from API, shows all beers list using lazy page loading and saves favorites for users.
 For registration and log in the following tools were used: firebase/Authentication tool and MobX.
-App uses free-api (https://punkapi.com/documentation/v2) that receives data about beer. You can receive random beer data, or review all beers list. "All beers" page uses lazy loading for saving resources.
+App uses free-api (https://sampleapis.com/) that receives data about beer. You can receive random beer data, or review all beers list. "All beers" page uses lazy loading for saving resources.
 You can save beer item to favorites. The app saves item data to firebase/Realtime Database on your user account.
 Changes in Favorites are shown in real time. It allows to add and delete favorite data without refreshing page.
 
