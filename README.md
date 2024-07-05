@@ -32,7 +32,7 @@ In project I used:
 - Husky
 
 - firebase
-- API (https://punkapi.com/documentation/v2)
+- API (https://sampleapis.com/)
 
 ## To start project in development mode:
 
