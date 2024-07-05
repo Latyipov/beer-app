@@ -10,4 +10,15 @@
     padding: 10px;
     margin: 10px 5px;
   }
+  &__notification {
+    @include flex(column);
+    @include text(20px, red);
+    min-width: 15rem;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: $light-background;
+  }
+  &__link {
+    @include link();
+  }
 }

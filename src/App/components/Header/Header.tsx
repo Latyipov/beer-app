@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { BurgerButton } from '../BurgerButton/BurgerButton';
 import { Navigation } from '../Navigation/Navigation';
 import { getAuth, signOut } from 'firebase/auth';
-
+import { useNavigate } from 'react-router-dom';
 import UserState from '@/App/services/MobX/store/UserState';
 
 import './Header.scss';
 
 export function Header() {
+  const userId = UserState.userStateData.id;
   const userName = UserState.userStateData.name;
   const [isBurgerOpen, setIsBurgerOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
-  const signOutUser = () => {
+  const onClickSignOutButton = () => {
     signOut(getAuth());
     UserState.removeStateUser();
+  };
+  const onClickSignInButton = () => {
+    navigate('/enter');
   };
 
   return (
@@ -25,10 +30,16 @@ export function Header() {
           <div className='header__menu-liner' onClick={() => setIsBurgerOpen(false)}></div>
         )}
       </div>
-      <div className='header__greet'> Hello {userName}!</div>
-      <button className='header__out-button' onClick={signOutUser}>
-        Sign out
-      </button>
+      {!!userName && <div className='header__greet'> Hello {userName}!</div>}
+      {!userId ? (
+        <button className='header__out-button' onClick={onClickSignInButton}>
+          Sign In/Sign Up
+        </button>
+      ) : (
+        <button className='header__out-button' onClick={onClickSignOutButton}>
+          Sign out
+        </button>
+      )}
     </header>
   );
 }

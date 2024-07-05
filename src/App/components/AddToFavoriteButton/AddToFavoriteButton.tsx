@@ -9,10 +9,7 @@ type AddToFavoriteButtonProps = {
 };
 
 const AddToFavoriteButton: FC<AddToFavoriteButtonProps> = ({ checkingData, itemObject }) => {
-  // we need this disable line because "image_url" coming from api object.
-  // That there is no confusion with url element names we save this element with the same name.
-  // eslint-disable-next-line camelcase
-  const { id, name, description, image_url } = itemObject;
+  const { id } = itemObject;
   const userId = UserState.userStateData.id;
 
   const isAlreadyInFavorite =
@@ -25,16 +22,9 @@ const AddToFavoriteButton: FC<AddToFavoriteButtonProps> = ({ checkingData, itemO
     </button>
   ) : (
     <button
+      disabled={!userId}
       className='table__button'
-      onClick={() =>
-        !!userId &&
-        pushData(userId, 'favorite', {
-          id: id,
-          name: name,
-          description: description,
-          image_url: image_url,
-        })
-      }
+      onClick={() => !!userId && pushData(userId, 'favorite', itemObject)}
     >
       add to favorite
     </button>

@@ -1,3 +1,5 @@
+import { BeerItem } from '@/App/types/BeerItem';
+
 export async function getBeerData(requestData: string) {
   try {
     // we need this disable line because this const received from dotenv, but ts find this like error
@@ -10,7 +12,10 @@ export async function getBeerData(requestData: string) {
         'Content-Type': 'application/json;charset=utf-8',
       },
     });
-    const apiResultJSON = await apiResponse.json();
+    const apiResultJSON: BeerItem[] | { error: string; message: string } = await apiResponse.json();
+    if ('error' in apiResultJSON) {
+      throw new Error(apiResultJSON.message);
+    }
     return {
       itemObject: apiResultJSON,
       errorMessage: null,

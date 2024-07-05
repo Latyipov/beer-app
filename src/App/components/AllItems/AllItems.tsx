@@ -15,26 +15,35 @@ import './AllItems.scss';
 export function AllItems() {
   const userId = UserState.userStateData.id;
   const portions = 10;
-  const currentAPIPage = useRef<number>(1);
-  const [chunkData, setСhunkData] = useState<BeerItem[] | null>(null);
+  const currentItem = useRef<number>(0);
+  const [data, setData] = useState<BeerItem[] | null>(null);
+  const [chunkData, setСhunkData] = useState<BeerItem[] | undefined>(undefined);
   const [collectedData, setCollectedData] = useState<BeerItem[] | []>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [smallLoading, setSmallLoading] = useState<boolean>(true);
-  const [isObserverActive, setIsObserverActive] = useState<boolean>(true);
+  const [smallLoading, setSmallLoading] = useState<boolean>(false);
+  const [isObserverActive, setIsObserverActive] = useState<boolean>(false);
   const [favoriteData, setFavoriteData] = useState<{ [id: string]: BeerItem } | null>(null);
 
-  useEffect(() => {
-    if (chunkData) {
-      setSmallLoading(false);
-      setCollectedData([...collectedData, ...chunkData]);
-    }
-    if (Array.isArray(chunkData) && chunkData.length === 0) {
-      setIsObserverActive(false);
-    }
-  }, [chunkData]);
+  const setNextPageData = () => {
+    setSmallLoading(true);
+    setIsObserverActive(false);
+    setСhunkData(data?.slice(currentItem.current, currentItem.current + portions));
+    currentItem.current = currentItem.current + portions;
+  };
 
   useEffect(() => {
+    setSmallLoading(true);
+    getBeerData(`ale`)
+      .then((apiResponse) => {
+        if (!apiResponse.errorMessage && !!apiResponse.itemObject) {
+          setData(apiResponse.itemObject);
+          setIsObserverActive(true);
+        } else {
+          setError(apiResponse.errorMessage);
+        }
+      })
+      .finally(() => setLoading(false));
     !!userId && listenData(userId, 'favorite', setFavoriteData, setError, setLoading);
     return () => {
       setFavoriteData(null);
@@ -42,23 +51,16 @@ export function AllItems() {
     };
   }, []);
 
-  const setNextPageData = () => {
-    setIsObserverActive(false);
-    setSmallLoading(true);
-    getBeerData(`beers?page=${currentAPIPage.current}&per_page=${portions}`)
-      .then((apiResponse) => {
-        if (!apiResponse.errorMessage && !!apiResponse.itemObject) {
-          setСhunkData(apiResponse.itemObject);
-        } else {
-          setError(apiResponse.errorMessage);
-        }
-      })
-      .finally(() => {
-        setSmallLoading(false);
-        currentAPIPage.current++;
-        setIsObserverActive(true);
-      });
-  };
+  useEffect(() => {
+    if (chunkData) {
+      setCollectedData([...collectedData, ...chunkData]);
+      setIsObserverActive(true);
+    }
+    if (Array.isArray(chunkData) && chunkData.length === 0) {
+      setSmallLoading(false);
+      setIsObserverActive(false);
+    }
+  }, [chunkData]);
 
   if (loading) {
     return <Loading />;

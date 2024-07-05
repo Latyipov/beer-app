@@ -7,7 +7,7 @@ export async function githubAuth() {
     const provider = new GithubAuthProvider();
     const auth = getAuth();
     const { user } = await signInWithPopup(auth, provider);
-    const userName: string = user.displayName ? user.displayName : 'unknownUser';
+    const userName: string = user.displayName ? user.displayName : 'Anonymous';
     const userEmail: string = user.email ? user.email : 'unknownEmail';
     const isUserExists = await getData(user.uid, 'username');
     if (isUserExists === null) {

@@ -3,7 +3,7 @@
 .enter-page {
   @include flex(column, nowrap, center, flex-start);
 
-  &__header {
+  &__headings {
     @include text(50px);
     font-style: italic;
     font-weight: 600;

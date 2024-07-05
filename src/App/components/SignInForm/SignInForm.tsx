@@ -1,5 +1,5 @@
 import React, { useState, MouseEvent, FC } from 'react';
-import { useInputControl } from '@/App/components/useInputControl/useInputControl';
+import { useInputControl } from '@/App/features/useInputControl/useInputControl';
 import { ValidationErrors } from '@/App/components/ValidationErrors/ValidationErrors';
 import { signIn } from '@api-helpers/api-helpers';
 import { SmallLoading } from '@components/SmallLoading/SmallLoading';

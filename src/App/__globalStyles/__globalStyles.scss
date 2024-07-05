@@ -42,12 +42,10 @@ $light-background: #fff4e0;
 
 @mixin link {
   padding: 10px;
-  color: white;
-  text-transform: uppercase;
-  text-decoration: none;
+  color: rgba(71, 34, 18, 0.9294117647);
 
   &:hover {
-    color: rgb(108, 223, 204);
+    color: black;
   }
 }
 @mixin button {
@@ -55,14 +53,16 @@ $light-background: #fff4e0;
   @include text;
   background-color: #f5c202d6;
   border: 1px solid black;
+  cursor: pointer;
 
   &:active {
     background-color: #f5c002f0;
     transform: translate(0, 0.05em);
   }
   &:disabled {
+    cursor: auto;
     border: none;
-    background-color: #e0e0e0;
+    background-color: #e5e5e585;
     transform: translate(0, 0);
   }
 }

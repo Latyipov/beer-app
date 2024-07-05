@@ -15,38 +15,27 @@ const Navigation: FC<NavigationProps> = ({ isBurgerOpen }) => {
       return false;
     }
   };
+  const pages: { name: string; path: string }[] = [
+    { name: 'Home', path: '/main' },
+    { name: 'All beers', path: '/all-beer' },
+    { name: 'Favorite beers', path: '/favorites' },
+  ];
 
   return (
     <nav className={`navigation ${isBurgerOpen && 'navigation--open'}`}>
       <ul className='navigation__list'>
-        <li className='navigation__list-item'>
-          <Link
-            className={`navigation__link ${checkLocation('/main') && 'navigation__link--active'}`}
-            to='/main'
-          >
-            Home
-          </Link>
-        </li>
-        <li className='navigation__list-item'>
-          <Link
-            className={`navigation__link ${
-              checkLocation('/all-beer') && 'navigation__link--active'
-            }`}
-            to='/all-beer'
-          >
-            All beers
-          </Link>
-        </li>
-        <li className='navigation__list-item'>
-          <Link
-            className={`navigation__link ${
-              checkLocation('/favorites') && 'navigation__link--active'
-            }`}
-            to='/favorites'
-          >
-            Favorite beers
-          </Link>
-        </li>
+        {pages.map((page) => (
+          <li className='navigation__list-item' key={page.name}>
+            <Link
+              className={`navigation__link ${
+                checkLocation(page.path) && 'navigation__link--active'
+              }`}
+              to={page.path}
+            >
+              {page.name}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

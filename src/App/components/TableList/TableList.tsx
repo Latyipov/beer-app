@@ -11,7 +11,8 @@ const TableList: FC<TableListProps> = ({ children }) => {
         <tr className='table__header-row'>
           <th className='table__cells'>ID</th>
           <th className='table__cells'>Name</th>
-          <th className='table__cells'>Description</th>
+          <th className='table__cells'>Price</th>
+          <th className='table__cells'>Rating</th>
           <th className='table__cells'>Picture</th>
           <th className='table__cells'></th>
         </tr>

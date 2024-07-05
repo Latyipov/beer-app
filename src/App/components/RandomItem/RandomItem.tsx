@@ -11,7 +11,8 @@ import '@components/RandomItem/RandomItem.scss';
 
 export function RandomItem() {
   const userId = UserState.userStateData.id;
-  const [randomItem, setRandomItem] = useState<BeerItem[] | null>(null);
+  const [data, setData] = useState<BeerItem[] | null>(null);
+  const [randomItem, setRandomItem] = useState<BeerItem | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [favoriteData, setFavoriteData] = useState<{ [key: string]: BeerItem } | null>(null);
@@ -27,18 +28,29 @@ export function RandomItem() {
 
   const refreshItem = (): undefined => {
     setLoading(true);
-    getBeerData('beers/random')
-      .then((response) => {
-        if (!response.errorMessage && !!response.itemObject) {
-          setRandomItem(response.itemObject);
+    if (data) {
+      const max = data.length;
+      const randomItemId = Math.floor(Math.random() * max);
+      setRandomItem(data[randomItemId]);
+      setLoading(false);
+    }
+    return undefined;
+  };
+  useEffect(() => {
+    getBeerData(`ale`)
+      .then((apiResponse) => {
+        if (!apiResponse.errorMessage && !!apiResponse.itemObject) {
+          setData(apiResponse.itemObject);
         } else {
-          setError(response.errorMessage);
+          setError(apiResponse.errorMessage);
         }
       })
       .finally(() => setLoading(false));
+  }, []);
 
-    return undefined;
-  };
+  useEffect(() => {
+    refreshItem();
+  }, [data]);
 
   if (loading) {
     return <Loading />;
@@ -55,11 +67,9 @@ export function RandomItem() {
       </button>
       {!!randomItem && (
         <TableList>
-          {randomItem.map((itemObject) => (
-            <TableItem key={itemObject.id} itemObject={itemObject}>
-              <AddToFavoriteButton checkingData={favoriteData} itemObject={itemObject} />
-            </TableItem>
-          ))}
+          <TableItem itemObject={randomItem}>
+            <AddToFavoriteButton checkingData={favoriteData} itemObject={randomItem} />
+          </TableItem>
         </TableList>
       )}
     </div>

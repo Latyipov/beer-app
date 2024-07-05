@@ -17,8 +17,8 @@ export const App: FC = observer(() => {
       <React.StrictMode>
         <Routes>
           <Route path='enter' element={isSignIn ? <Navigate to='/main' /> : <EnterPage />} />
-          <Route path='/main' element={isSignIn ? <MainPage /> : <Navigate to='/enter' />} />
-          <Route path='all-beer' element={isSignIn ? <AllItemsPage /> : <Navigate to='/enter' />} />
+          <Route path='/main' element={<MainPage />} />
+          <Route path='all-beer' element={<AllItemsPage />} />
           <Route
             path='favorites'
             element={isSignIn ? <FavoriteItemsPage /> : <Navigate to='/enter' />}
