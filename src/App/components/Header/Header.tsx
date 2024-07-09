@@ -16,6 +16,7 @@ export function Header() {
   const onClickSignOutButton = () => {
     signOut(getAuth());
     UserState.removeStateUser();
+    navigate('/enter');
   };
   const onClickSignInButton = () => {
     navigate('/enter');

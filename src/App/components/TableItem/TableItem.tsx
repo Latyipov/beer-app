@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { BeerItem } from '@/App/types/BeerItem';
+import { RatingStars } from '@components/RatingStars/RatingStars';
 import imgError from '@/App/images/error-beer-img.png';
 
 type TableItemProps = {
@@ -9,13 +10,7 @@ type TableItemProps = {
 
 const TableItem: FC<TableItemProps> = ({ itemObject, children }) => {
   if (itemObject) {
-    const {
-      id,
-      name,
-      price,
-      rating: { average, reviews },
-      image,
-    } = itemObject;
+    const { id, name, price, rating, image } = itemObject;
 
     return (
       <tr className='table__row'>
@@ -23,7 +18,7 @@ const TableItem: FC<TableItemProps> = ({ itemObject, children }) => {
         <td className='table__cells'>{name}</td>
         <td className='table__cells'>{price}</td>
         <td className='table__cells'>
-          rate:{average}, reviews:{reviews}
+          <RatingStars rating={rating} />
         </td>
         <td className='table__cells'>
           <img

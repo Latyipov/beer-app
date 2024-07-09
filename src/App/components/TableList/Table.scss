@@ -18,6 +18,10 @@
     &:not(:last-child) {
       border-right: 1px solid #472212ed;
     }
+    &:nth-child(4) {
+      position: relative;
+      min-width: 135px;
+    }
     &:nth-child(5) {
       min-width: 135px;
     }
