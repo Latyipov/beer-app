@@ -29,10 +29,22 @@ export function RandomItem() {
   const refreshItem = (): undefined => {
     setLoading(true);
     if (data) {
-      const max = data.length;
+      const max = data.length - 1;
       const randomItemId = Math.floor(Math.random() * max);
-      setRandomItem(data[randomItemId]);
-      setLoading(false);
+      if (
+        data[randomItemId].id &&
+        data[randomItemId].name &&
+        data[randomItemId].image &&
+        data[randomItemId].price &&
+        data[randomItemId].rating &&
+        data[randomItemId].rating.average &&
+        data[randomItemId].rating.reviews
+      ) {
+        setRandomItem(data[randomItemId]);
+        setLoading(false);
+      } else {
+        refreshItem();
+      }
     }
     return undefined;
   };
