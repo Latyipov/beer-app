@@ -25,7 +25,6 @@
 - **React + TypeScript** — modern UI development
 - **MobX** — state management
 - **Webpack** — custom bundling setup
-- **Babel** — transpilation for browser compatibility
 - **SCSS** — modular and maintainable styles
 - **Firebase** — authentication + real-time database
 - **ESLint & Prettier** — code formatting and linting
