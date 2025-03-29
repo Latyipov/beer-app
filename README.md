@@ -49,7 +49,7 @@
 
 ### To build project:
 
-`npm run build` - build project in "production "mode.
+- `npm run build` - build project in "production "mode.
 
 ### To deploy project to GitHub Pages
 
