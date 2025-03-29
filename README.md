@@ -1,48 +1,56 @@
-# Beer App
+# 🍺 BeerFinder
 
-For correct build via Webpack you must have:
+**BeerFinder** is a full-featured web application built with React and TypeScript. It allows users to sign up, log in, explore beers from a public API, and save their favorites — all with real-time updates via Firebase. Designed with performance and user experience in mind, the app uses lazy loading, modern development tools, and state management with MobX.
 
-- nodejs >=16.13.1
-- npm >= 7.10.0
+---
 
-This app allows users to register and log in, shows random beer from API, shows all beers list using lazy page loading and saves favorites for users.
-For registration and log in the following tools were used: firebase/Authentication tool and MobX.
-App uses free-api (https://sampleapis.com/) that receives data about beer. You can receive random beer data, or review all beers list. "All beers" page uses lazy loading for saving resources.
-You can save beer item to favorites. The app saves item data to firebase/Realtime Database on your user account.
-Changes in Favorites are shown in real time. It allows to add and delete favorite data without refreshing page.
+## Live Demo
 
-In project I used:
+- **Deployed Version**: [GitHub Pages Link](https://latyipov.github.io/beer-app/)
 
-- Webpack to optimally bundle my project.
-- Babel for React and as a compiler for js code for most browsers.
-- Eslint and Prettier that analyze, format and fix my code.
-- Husky that use git hooks for checking my code before committing.
+---
 
-## Tech stack
+## Features
 
-- HTML
-- CSS/SCSS
-- JavaScript
-- React
-- MobX
-- Webpack
-- Babel
-- Eslint
-- Prettier
-- Husky
+- User authentication via **Firebase Authentication**
+- Get a **random beer** or explore the **full beer list** using the [Sample APIs](https://sampleapis.com/)
+- "All Beers" page uses **lazy loading** for performance optimization
+- Save beers to your **favorites list**, stored in **Firebase Realtime Database**
+- **Real-time updates** — changes to favorites appear instantly without page reload
 
-- firebase
-- API (https://sampleapis.com/)
+---
 
-## To start project in development mode:
+## Tech Stack
+
+- **React + TypeScript** — modern UI development
+- **MobX** — state management
+- **Webpack** — custom bundling setup
+- **Babel** — transpilation for browser compatibility
+- **SCSS** — modular and maintainable styles
+- **Firebase** — authentication + real-time database
+- **ESLint & Prettier** — code formatting and linting
+- **Husky** — Git hooks for pre-commit code quality checks
+
+---
+
+## Requirements
+
+- `Node.js >= 16.13.1`
+- `npm >= 7.10.0`
+
+---
+
+## Getting Started
+
+### To start project in development mode:
 
 - `npm install` - install necessary dependencies
 - `npm start` - start "WebpackDevServer" on your computer
 
-## To build project:
+### To build project:
 
 `npm run build` - build project in "production "mode.
 
-## To deploy project to GitHub Pages
+### To deploy project to GitHub Pages
 
 - `npm run deploy` - send directory `build` to GitHub Pages
